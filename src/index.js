@@ -7,8 +7,14 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import { BrowserRouter as Router } from 'react-router-dom';
 
-const rootReducer = (currentState = {}, action) => { 
-  return currentState;
+const rootReducer = (currentState = {
+  posts: []
+}, action) => { 
+  if (action.type === "GET_POSTS_FROM_FETCH") {
+    return {...currentState, posts: action.payload};
+  } else {
+    return currentState;
+  }
 }
 
 const store = createStore(rootReducer, applyMiddleware(thunk)) 

@@ -4,6 +4,7 @@ import HomePage from './Components/HomePage';
 import PostGallery from './Components/PostGallery';
 import Quiz from './Components/Quiz';
 import Login from './Components/Login';
+import PostPage from './Components/PostPage';
 import { Route, Switch} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {getPosts} from './Redux/actions';
@@ -21,6 +22,7 @@ class App extends React.Component {
         <NavBar/>
         <Switch>
           <Route path={'/home'} render={ () => <HomePage/>} />
+          <Route path={'/posts/:id'} render={ () => <PostPage/>} />
           <Route path={'/posts'} render={ () => <PostGallery/>} />
           <Route path={'/quiz'} render={ () => <Quiz/>} />
           <Route path={'/login'} render={ () => <Login/>} />

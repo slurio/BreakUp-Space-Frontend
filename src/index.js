@@ -10,8 +10,8 @@ import { BrowserRouter as Router } from 'react-router-dom';
 const rootReducer = (currentState = {
   posts: []
 }, action) => { 
-  if (action.type === "GET_POSTS_FROM_FETCH") {
-    return {...currentState, posts: action.payload};
+  if (action.type === "GET_POSTS") {
+    return { ...currentState, posts: action.payload};
   } else {
     return currentState;
   }

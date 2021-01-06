@@ -1,21 +1,20 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import getPosts from '../Redux/actions';
+
+
 
 
 const PostCard = (props) => {
-    console.log(props.posts)
+
     return (
         <div>
-            <h1>Post Card</h1>
+            <h1>{props.info.title}</h1>
+            <p>{props.info.content}</p>
+            <p>{props.info.date}</p>
+            <p>{props.info.user.username}</p>
         </div>
     )
 }
 
-const msp = state => {
-    return {
-        posts: state.posts
-    } 
-}
 
-export default connect(msp, null)(PostCard);
+
+export default PostCard;

@@ -4,8 +4,8 @@ export const getPosts = () => {
     return function (dispatch) {
         fetch(POSTS_URL)
         .then(resp => resp.json())
-        .then(posts => console.log(posts))
+        .then(posts => dispatch({type: "GET_POSTS", payload: posts}))
     }
-}
+};
 
-// dispatch({type: "GET_POSTS_FROM_FETCH", payload: posts})
+// 

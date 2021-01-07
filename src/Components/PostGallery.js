@@ -5,9 +5,7 @@ import {Route, Switch} from 'react-router-dom';
 import PostPage from '../Components/PostPage';
 
 const PostGallery = (props) => {
-    // let id = props.posts[0].id;
 
-    // let foundPost = props.posts.find(post => post.id === id)
     console.log(props.posts)
 
     const renderPosts = () => {

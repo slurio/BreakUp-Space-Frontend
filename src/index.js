@@ -8,11 +8,14 @@ import thunk from 'redux-thunk';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 const rootReducer = (currentState = {
-  posts: []
+  posts: [],
+  messages: []
 }, action) => { 
   if (action.type === "GET_POSTS") {
     return { ...currentState, posts: action.payload};
-  } else {
+  } else if (action.type === "GET_MESSAGES") {
+    return {...currentState, messages: action.payload}
+  }else {
     return currentState;
   }
 }

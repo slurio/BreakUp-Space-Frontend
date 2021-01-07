@@ -6,12 +6,13 @@ import Quiz from './Components/Quiz';
 import Login from './Components/Login';
 import { Route, Switch} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {getPosts} from './Redux/actions';
+import {getPosts, getBreakUpMessages} from './Redux/actions';
 
 class App extends React.Component {
   
   componentDidMount() {
     this.props.fetchPosts();
+    this.props.fetchMessages();
   }
 
   render() {
@@ -33,13 +34,15 @@ class App extends React.Component {
 
 const msp = (state) => {
     return {
-      posts: state.posts
+      posts: state.posts,
+      messages: state.messages
     }
 }
 
 const mdp = (dispatch) => {
   return {
-    fetchPosts: () => dispatch(getPosts())
+    fetchPosts: () => dispatch(getPosts()),
+    fetchMessages: () => dispatch(getBreakUpMessages())
   }
 }
 

@@ -7,7 +7,7 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import {Redirect} from 'react-router-dom';
-import PostGallery from './PostGallery';
+import PostGallery from '../Containers/PostGallery';
 import Quiz from './Quiz';
 import Login from './Login';
 

@@ -10,6 +10,7 @@ import {Redirect} from 'react-router-dom';
 import PostGallery from '../Containers/PostGallery';
 import Quiz from './Quiz';
 import Login from './Login';
+import {NavLink} from 'react-router-dom';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -53,66 +54,74 @@ const useStyles = makeStyles((theme) => ({
 
 function NavBar() {
     const classes = useStyles();
-    // const theme = useTheme();
+    const theme = useTheme();
     const [value, setValue] = React.useState(0);
   
-    const handleChange = (event, newValue) => {
-      if (event.target.innerHTML === "Community") {
-        setCommunity(!community);
-        setQuiz(false);
-        setLogin(false);
-        setHome(false);
-    } else if (event.target.innerHTML === "The Quiz") {
-        setQuiz(!quiz);
-        setCommunity(false);
-        setLogin(false);
-        setHome(false);
-    } else if (event.target.innerHTML === "Log-In") {
-        setLogin(!login);
-        setCommunity(false);
-        setHome(false);
-        setQuiz(false);
-    } else if (event.target.innerHTML === "Home") {
-        setHome(!home);
-        setCommunity(false);
-        setLogin(false);
-        setQuiz(false);
-    }
-    setValue(newValue);
-    };
+  //   const handleChange = (event, newValue) => {
+  //     if (event.target.innerHTML === "Community") {
+  //       setCommunity(!community);
+  //       setQuiz(false);
+  //       setLogin(false);
+  //       setHome(false);
+  //   } else if (event.target.innerHTML === "The Quiz") {
+  //       setQuiz(!quiz);
+  //       setCommunity(false);
+  //       setLogin(false);
+  //       setHome(false);
+  //   } else if (event.target.innerHTML === "Login") {
+  //       setLogin(!login);
+  //       setCommunity(false);
+  //       setHome(false);
+  //       setQuiz(false);
+  //   } else if (event.target.innerHTML === "Home") {
+  //       setHome(!home);
+  //       setCommunity(false);
+  //       setLogin(false);
+  //       setQuiz(false);
+  //   }
+  //   setValue(newValue);
+  //   };
   
 
-  const [community, setCommunity] = useState(false);
-  const [quiz, setQuiz] = useState(false);
-  const [login, setLogin] = useState(false);
-  const [home, setHome] = useState(false);
+  // const [community, setCommunity] = useState(false);
+  // const [quiz, setQuiz] = useState(false);
+  // const [login, setLogin] = useState(false);
+  // const [home, setHome] = useState(false);
  
  
 
   return (
     <div className={classes.root}>
-        {home ? <Redirect to={'/home'} /> : null}
+        {/* {home ? <Redirect to={'/home'} /> : null}
         {community ? <Redirect to={'/posts'} /> : null}
         {quiz ? <Redirect to={'/quiz'} /> : null}
-        {login ? <Redirect to={'/login'} /> : null}
+        {login ? <Redirect to={'/login'} /> : null} */}
 
       <AppBar position="static" color="default">
         <Tabs
             value={value}
-            onChange={handleChange}
+            // onChange={handleChange}
             indicatorColor="primary"
             textColor="primary"
             variant="fullWidth"
+            TabIndicatorProps={{style: {backgroundColor: "transparent"}}}
         >
+          <NavLink to='/home'>
             <Tab label="Home" {...a11yProps(0)}/>
-          <Tab label="Community" {...a11yProps(1)}/>
-          <Tab label="The Quiz" {...a11yProps(2)}/>
-          <Tab label="Contact" disabled {...a11yProps(3)}/>
-          <Tab label="Log-In" {...a11yProps(4)}/>
+          </NavLink>
+          <NavLink to='/posts'>
+            <Tab label="Community" {...a11yProps(1)}/>
+          </NavLink>
+          <NavLink to='/quiz'>
+            <Tab label="The Quiz" {...a11yProps(2)}/>
+          </NavLink>
+            <Tab label="Contact" disabled {...a11yProps(3)}/>
+          <NavLink to='/login'>
+            <Tab label="Login" {...a11yProps(4)}/>
+          </NavLink>
         </Tabs>
       </AppBar>
     </div>
-  );
-}
+  )}
 
 export default NavBar;

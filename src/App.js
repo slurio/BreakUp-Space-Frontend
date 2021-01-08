@@ -18,7 +18,6 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <h1>App Header</h1>
         <NavBar/>
         <Switch>
           <Route path={'/quiz'} render={ () => <Quiz/>} />

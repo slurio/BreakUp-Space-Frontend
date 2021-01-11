@@ -1,5 +1,6 @@
 const POSTS_URL = 'http://localhost:3000/posts/';
-const BREAKUPMESSAGE_URL = 'http://localhost:3000/breakup_messages/'
+const BREAKUPMESSAGES_URL = 'http://localhost:3000/breakup_messages/'
+const USERS_URL = 'http://localhost:3000/users/'
 
 export const getPosts = () => {
     return function (dispatch) {
@@ -11,10 +12,20 @@ export const getPosts = () => {
 
 export const getBreakUpMessages = () => {
     return function (dispatch) {
-        fetch(BREAKUPMESSAGE_URL)
+        fetch(BREAKUPMESSAGES_URL)
         .then(resp => resp.json())
         .then(messages => dispatch({type: "GET_MESSAGES", payload: messages}))
     }
-}
+};
+
+export const fetchUsers = () => {
+    return function(dispatch) {
+        fetch(USERS_URL)
+        .then(resp => resp.json())
+        .then(users => dispatch({type: "FETCH_USERS", payload: users}))
+    }
+};
+
+export const loginUser = user => ({type: "SET_USER", payload: user});
 
 // 

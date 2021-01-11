@@ -9,13 +9,19 @@ import { BrowserRouter as Router } from 'react-router-dom';
 
 const rootReducer = (currentState = {
   posts: [],
-  messages: []
+  messages: [], 
+  users: [],
+  user: '',
 }, action) => { 
   if (action.type === "GET_POSTS") {
     return { ...currentState, posts: action.payload};
   } else if (action.type === "GET_MESSAGES") {
     return {...currentState, messages: action.payload}
-  }else {
+  } else if (action.type === "FETCH_USERS") {
+    return {...currentState, users: action.payload}
+  } else if (action.type === "SET_USER") {
+    return {...currentState, user: action.payload}
+  } else {
     return currentState;
   }
 }

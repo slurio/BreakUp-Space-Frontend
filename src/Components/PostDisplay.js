@@ -6,6 +6,8 @@ import Modal from '@material-ui/core/Modal';
 
 const PostDisplay = props => {
     const [open, setOpen] = useState(false);
+    const [title, setTitle] = "";
+    const [content, setContent] = "";
 
     const renderPosts = () => {
          return props.posts.map(post => <PostCard key={post.id} info={post} />)
@@ -24,6 +26,10 @@ const PostDisplay = props => {
         console.log(e.target)
     }
 
+    const changeHandle = () => {
+        
+    }
+
     return (
         <div>
             <h1>Post Display</h1>
@@ -35,7 +41,8 @@ const PostDisplay = props => {
             >
                 <div>
                     <form onSubmit={handleSubmit}>
-                        <input type='textarea' placeholder='text goes here!'/>
+                        <input type='text' name='title' placeholder='title goes here!' onChange={changeHandle}/>
+                        <input type='textarea' name='content' placeholder='text goes here!' onChange={changeHandle}/>
                         <button>Submit</button>
                     </form>
                 </div>

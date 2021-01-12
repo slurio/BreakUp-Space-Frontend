@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {connect} from 'react-redux';
-import {loginUser} from '../Redux/actions'
+import {loginUser} from '../Redux/actions';
+import {Redirect} from 'react-router-dom';
 
     const Login = (props) => {
         const [username, setUsername] = useState('');
@@ -26,7 +27,7 @@ import {loginUser} from '../Redux/actions'
 
         return (
             <div>
-                {console.log(props.user)}
+                {props.user ? <Redirect to='/'/>: null}
                 <h1>Log-In</h1>
                 <form onSubmit={handleSubmit} >
                     <input type='text' name='username' placeholder='Username' onChange={changeHandle} />

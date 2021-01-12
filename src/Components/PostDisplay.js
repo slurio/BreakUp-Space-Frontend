@@ -2,12 +2,12 @@ import React, {useState} from 'react';
 import PostCard from '../Components/PostCard';
 import {connect} from 'react-redux';
 import Modal from '@material-ui/core/Modal';
-
+import {savePost} from '../Redux/actions';
 
 const PostDisplay = props => {
     const [open, setOpen] = useState(false);
-    const [title, setTitle] = "";
-    const [content, setContent] = "";
+    const [title, setTitle] = useState("");
+    const [content, setContent] = useState("");
 
     const renderPosts = () => {
          return props.posts.map(post => <PostCard key={post.id} info={post} />)
@@ -23,11 +23,24 @@ const PostDisplay = props => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log(e.target)
+        var today = new Date()
+        let post = {
+            title: title,
+            content: content,
+            user_id: props.user.id,
+            date: today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate(),
+            time: today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate() + 'T' + today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds() + ".000Z",
+            up_votes: 0
+        }
+        props.savePost(post)
     }
 
-    const changeHandle = () => {
-        
+    const changeHandle = (event) => {
+        if (event.target.name === 'title') {
+            setTitle(event.target.value)
+        } else if (event.target.name === 'content') {
+            setContent(event.target.value)
+        }
     }
 
     return (
@@ -53,8 +66,15 @@ const PostDisplay = props => {
 
 const msp = state => {
     return {
-        posts: state.posts
+        posts: state.posts,
+        user: state.user
     }
 }
 
-export default connect (msp)(PostDisplay);
+const mdp = dispatch => {
+    return {
+        savePost: (postObj) => dispatch(savePost(postObj))
+    }
+}
+
+export default connect (msp, mdp)(PostDisplay);

@@ -1,6 +1,6 @@
 const POSTS_URL = 'http://localhost:3000/posts/';
-const BREAKUPMESSAGES_URL = 'http://localhost:3000/breakup_messages/'
-const USERS_URL = 'http://localhost:3000/users/'
+const BREAKUPMESSAGES_URL = 'http://localhost:3000/breakup_messages/';
+const USERS_URL = 'http://localhost:3000/users/';
 
 export const getPosts = () => {
     return function (dispatch) {
@@ -9,6 +9,21 @@ export const getPosts = () => {
         .then(posts => dispatch({type: "GET_POSTS", payload: posts}))
     }
 };
+
+export const savePost = (postObj) => {
+    return function (dispatch) {
+        fetch(POSTS_URL, {
+            method:'POST',
+            headers: {
+                'content-type': 'application/json',
+                accepts: "application/json"
+            },
+            body: JSON.stringify(postObj)
+        })
+        .then(resp => resp.json())
+        .then(savedPost => console.log(savedPost))
+    }
+}
 
 export const getBreakUpMessages = () => {
     return function (dispatch) {

@@ -21,7 +21,22 @@ export const savePost = (postObj) => {
             body: JSON.stringify(postObj)
         })
         .then(resp => resp.json())
-        .then(savedPost => console.log(savedPost))
+        .then(newPost => dispatch({type: "NEW_POST", payload: newPost}))
+    }
+}
+
+export const updateVote = (upVote, postId) => {
+    return function (dispatch) {
+        fetch(POSTS_URL + postId, {
+            method: 'PATCH',
+            headers: {
+                'content-type': 'application/json',
+                accepts: 'application/json'
+            },
+            body: JSON.stringify(upVote)
+        })
+        .then(resp => resp.json())
+        .then(updatedPost => dispatch({type: "UPDATED_POST", payload: updatedPost}))
     }
 }
 

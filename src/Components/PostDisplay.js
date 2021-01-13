@@ -10,7 +10,8 @@ const PostDisplay = props => {
     const [content, setContent] = useState("");
 
     const renderPosts = () => {
-         return props.posts.map(post => <PostCard key={post.id} info={post} />)
+        let sortedPosts = props.posts.sort((a,b) => b.up_votes - a.up_votes)
+         return sortedPosts.map(post => <PostCard key={post.id} info={post} />)
     }
 
     const handleOpen = () => {

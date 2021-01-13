@@ -4,16 +4,18 @@ import HomePage from './Components/HomePage';
 import PostGallery from './Containers/PostGallery';
 import Quiz from './Components/Quiz';
 import Login from './Components/Login';
+import UserProfile from './Components/UserProfile';
 import { Route, Switch} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {getPosts, getBreakUpMessages, fetchUsers} from './Redux/actions';
+import {getPosts, getBreakUpMessages, fetchUsers, fetchFavorites} from './Redux/actions';
 
 class App extends React.Component {
   
   componentDidMount() {
     this.props.fetchPosts();
     this.props.fetchMessages();
-    this.props.fetchUsers()
+    this.props.fetchUsers();
+    this.props.fetchFavorites();
   }
 
   render() {
@@ -22,6 +24,7 @@ class App extends React.Component {
         <NavBar/>
         <Switch>
           <Route path={'/quiz'} render={ () => <Quiz/>} />
+          <Route path={'/profile'} render={ () => <UserProfile/>} />
           <Route path={'/login'} render={ () => <Login/>} />
           <Route path={'/posts'} render={ () => <PostGallery/>} />
           <Route path={'/'} render={ () => <HomePage/>} />
@@ -43,7 +46,8 @@ const mdp = (dispatch) => {
   return {
     fetchPosts: () => dispatch(getPosts()),
     fetchMessages: () => dispatch(getBreakUpMessages()),
-    fetchUsers: () => dispatch(fetchUsers())
+    fetchUsers: () => dispatch(fetchUsers()), 
+    fetchFavorites: () => dispatch(fetchFavorites())
   }
 }
 

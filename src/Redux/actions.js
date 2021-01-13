@@ -1,6 +1,15 @@
 const POSTS_URL = 'http://localhost:3000/posts/';
 const BREAKUPMESSAGES_URL = 'http://localhost:3000/breakup_messages/';
 const USERS_URL = 'http://localhost:3000/users/';
+const FAVORITES_URL = 'http://localhost:3000/favorites/';
+
+export const fetchFavorites = () => {
+    return function (dispatch) {
+        fetch(FAVORITES_URL)
+        .then(resp => resp.json())
+        .then(favorites => dispatch({type: "GET_FAVORITES", payload: favorites}))
+    }
+}
 
 export const getPosts = () => {
     return function (dispatch) {

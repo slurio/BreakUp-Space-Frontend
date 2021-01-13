@@ -1,13 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import {Redirect} from 'react-router-dom';
-import {NavLink} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {loginUser} from '../Redux/actions';
 
@@ -44,17 +43,16 @@ function a11yProps(index) {
     };
   }
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
-    backgroundColor: theme.palette.background.paper,
+    backgroundColor: 'white',
     width: '100%',
   },
 }));
 
 function NavBar(props) {
     const classes = useStyles();
-    const theme = useTheme();
-    const [value, setValue] = React.useState(0);
+    // const [value, setValue] = React.useState(0);
   
 
 const logoutHandle = () => {
@@ -66,28 +64,20 @@ const logoutHandle = () => {
 
       <AppBar position="static" color="default">
         <Tabs
-            value={value}
+            value= {0}
             indicatorColor="primary"
             textColor="primary"
             variant="fullWidth"
             TabIndicatorProps={{style: {backgroundColor: "transparent"}}}
         >
-          <NavLink to='/home'>
-            <Tab label="Home" {...a11yProps(0)}/>
-          </NavLink>
-          <NavLink to='/posts'>
-            <Tab label="Community" {...a11yProps(1)}/>
-          </NavLink>
-          <NavLink to='/quiz'>
-            <Tab label="The Quiz" {...a11yProps(2)}/>
-          </NavLink>
-            <Tab label="Contact" disabled {...a11yProps(3)}/>
-          { props.user ?
+          <Tab component={Link} to='/home' label="Home" {...a11yProps(0)}/>
+          <Tab component={Link} to='/posts' label="Community" {...a11yProps(1)}/>
+          <Tab component={Link} to='/quiz' label="The Quiz" {...a11yProps(2)}/>
+          <Tab component={Link} to='/profile' label="Profile" {...a11yProps(3)}/>
+          {props.user ?
           <Tab label="Logout" onClick={logoutHandle} {...a11yProps(4)}/>
           :
-          <NavLink to='/login'>
-            <Tab label="Login" {...a11yProps(4)}/>
-          </NavLink>
+          <Tab component={Link} to='/login' label="Login" {...a11yProps(4)}/>
           }
         </Tabs>
       </AppBar>

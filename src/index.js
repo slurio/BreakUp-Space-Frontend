@@ -12,12 +12,15 @@ const rootReducer = (currentState = {
   messages: [], 
   users: [],
   user: '',
+  favorites: []
 }, action) => { 
   if (action.type === "GET_POSTS") {
     return { ...currentState, posts: action.payload};
   } else if (action.type === "GET_MESSAGES") {
     return {...currentState, messages: action.payload}
-  } else if (action.type === "FETCH_USERS") {
+  } else if (action.type === "GET_FAVORITES") {
+    return {...currentState, favorites: action.payload}
+  }else if (action.type === "FETCH_USERS") {
     return {...currentState, users: action.payload}
   } else if (action.type === "SET_USER") {
     return {...currentState, user: action.payload}

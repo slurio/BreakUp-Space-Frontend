@@ -26,7 +26,10 @@ const rootReducer = (currentState = {
   } else if (action.type === "UPDATED_POST") {
       let newArray = currentState.posts.filter(post => post.id !== action.payload.id)
     return {...currentState, posts: [...newArray, action.payload]}
-  } else {
+  } else if (action.type === "DELETE_POST") {
+    let newArray = currentState.posts.filter(post => post.id !== action.payload.id)
+  return {...currentState, posts: newArray}
+} else {
     return currentState;
   }
 }

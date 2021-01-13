@@ -25,6 +25,16 @@ export const savePost = (postObj) => {
     }
 }
 
+export const deletePost = (postId) => {
+    return function(dispatch) {
+        fetch(POSTS_URL + postId, {
+            method: 'DELETE'
+        })
+        .then(resp => resp.json())
+        .then(deletedPost => dispatch({type: "DELETE_POST", payload: deletedPost}))
+    }
+}
+
 export const updateVote = (upVote, postId) => {
     return function (dispatch) {
         fetch(POSTS_URL + postId, {

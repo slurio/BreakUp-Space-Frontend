@@ -1,7 +1,7 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {updateVote} from '../Redux/actions';
+import {updateVote, deletePost} from '../Redux/actions';
 
 const PostCard = (props) => {
 
@@ -10,12 +10,14 @@ const PostCard = (props) => {
             let upVote = {
                 up_votes: props.info.up_votes + 1
             }
-            props.updateUpVote(upVote, props.info.id)
+            props.updateUpVote(upVote, props.info.id);
         } else if (event.target.name === "down") {
             let downVote = {
                 up_votes: props.info.up_votes - 1
             }
-            props.updateUpVote(downVote, props.info.id)
+            props.updateUpVote(downVote, props.info.id);
+        } else if (event.target.name === "delete") {
+            props.deletePost(props.info.id);
         }
     }
 
@@ -30,13 +32,15 @@ const PostCard = (props) => {
             <p>Up-Votes: {props.info.up_votes}</p>
             <button name="up" onClick={clickHandle}>👍</button>
             <button name="down" onClick={clickHandle}>👎</button>
+            <button name="delete" onClick={clickHandle}>X</button>
         </div>
     )
 }
 
 const mdp = dispatch => {
     return {
-        updateUpVote: (upVote, postId) => dispatch(updateVote(upVote, postId))
+        updateUpVote: (upVote, postId) => dispatch(updateVote(upVote, postId)),
+        deletePost: (postId) => dispatch(deletePost(postId))
     }
 }
 

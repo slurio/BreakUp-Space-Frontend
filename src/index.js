@@ -12,12 +12,15 @@ const rootReducer = (currentState = {
   messages: [], 
   users: [],
   user: '',
-  favorites: []
+  favorites: [],
+  comments: [],
 }, action) => { 
   if (action.type === "GET_POSTS") {
     return { ...currentState, posts: action.payload};
   } else if (action.type === "GET_MESSAGES") {
     return {...currentState, messages: action.payload}
+  } else if (action.type === "GET_COMMENTS") {
+    return {...currentState, comments: action.payload}
   } else if (action.type === "GET_FAVORITES") {
     return {...currentState, favorites: action.payload}
   }else if (action.type === "FETCH_USERS") {
@@ -32,6 +35,8 @@ const rootReducer = (currentState = {
   } else if (action.type === "DELETE_POST") {
     let newArray = currentState.posts.filter(post => post.id !== action.payload.id)
   return {...currentState, posts: newArray}
+} else if (action.type === "NEW_COMMENT") {
+  return {...currentState, comments: [...currentState.comments, action.payload]}
 } else {
     return currentState;
   }

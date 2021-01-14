@@ -50,7 +50,7 @@ const PostDisplay = props => {
             {renderPosts()}
             <button onClick={handleOpen}>Write Post</button>
             <Modal
-                open={open}
+         s      open={open}
                 onClose={handleClose}
             >
                 <div>

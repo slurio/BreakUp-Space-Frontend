@@ -2,6 +2,7 @@ const POSTS_URL = 'http://localhost:3000/posts/';
 const BREAKUPMESSAGES_URL = 'http://localhost:3000/breakup_messages/';
 const USERS_URL = 'http://localhost:3000/users/';
 const FAVORITES_URL = 'http://localhost:3000/favorites/';
+const COMMENTS_URL = 'http://localhost:3000/comments/';
 
 export const fetchFavorites = () => {
     return function (dispatch) {
@@ -77,4 +78,24 @@ export const fetchUsers = () => {
 
 export const loginUser = user => ({type: "SET_USER", payload: user});
 
-// 
+export const getComments = () => {
+    return function (dispatch) {
+        fetch(COMMENTS_URL)
+        .then(resp => resp.json())
+        .then(comments => dispatch({type: "GET_COMMENTS", payload: comments}))
+    }
+}
+
+export const saveComment = (commentObj) => {
+    return function(dispatch) {
+        fetch(COMMENTS_URL, {
+            method: "POST",
+            headers: {
+                'content-type': 'application/json',
+                'accepts': 'application/json'
+            }, 
+            body: JSON.stringify(commentObj)
+        }) .then(resp => resp.json)
+        .then(comment => dispatch({type: "NEW_COMMENT", payload: comment}))
+    }
+}

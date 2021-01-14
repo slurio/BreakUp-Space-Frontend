@@ -7,7 +7,7 @@ import Login from './Components/Login';
 import UserProfile from './Components/UserProfile';
 import { Route, Switch} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {getPosts, getBreakUpMessages, fetchUsers, fetchFavorites} from './Redux/actions';
+import {getPosts, getBreakUpMessages, fetchUsers, fetchFavorites, getComments} from './Redux/actions';
 
 class App extends React.Component {
   
@@ -16,6 +16,7 @@ class App extends React.Component {
     this.props.fetchMessages();
     this.props.fetchUsers();
     this.props.fetchFavorites();
+    this.props.fetchComments();
   }
 
   render() {
@@ -47,7 +48,8 @@ const mdp = (dispatch) => {
     fetchPosts: () => dispatch(getPosts()),
     fetchMessages: () => dispatch(getBreakUpMessages()),
     fetchUsers: () => dispatch(fetchUsers()), 
-    fetchFavorites: () => dispatch(fetchFavorites())
+    fetchFavorites: () => dispatch(fetchFavorites()),
+    fetchComments: () => dispatch(getComments())
   }
 }
 

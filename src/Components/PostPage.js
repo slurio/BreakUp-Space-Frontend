@@ -24,6 +24,7 @@ function PostPage({post, user, saveComment, comments}) {
             // add up-vote
         }
         saveComment(savedPost);
+        setComment("");
     }
 
     const changeHandle = (event) => {

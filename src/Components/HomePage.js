@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {Redirect} from 'react-router-dom';
 import styled from 'styled-components';
+import logo from '../asset/navbar_logo.png';
 
 const HomePage = () => {
     

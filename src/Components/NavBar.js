@@ -9,6 +9,8 @@ import Box from '@material-ui/core/Box';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {loginUser} from '../Redux/actions';
+import logo from '../asset/navbar_logo.png';
+import styled from 'styled-components';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -45,16 +47,13 @@ function a11yProps(index) {
 
 const useStyles = makeStyles(() => ({
   root: {
-    backgroundColor: 'white',
     width: '100%',
   },
 }));
 
 function NavBar(props) {
     const classes = useStyles();
-    // const [value, setValue] = React.useState(0);
   
-
 const logoutHandle = () => {
     props.setUser('')
 }
@@ -62,15 +61,16 @@ const logoutHandle = () => {
   return (
     <div className={classes.root}>
 
-      <AppBar position="static" color="default">
+      <Nav position="static">
         <Tabs
             value= {0}
+            style={{height: "72px"}}
             indicatorColor="primary"
-            textColor="primary"
+            textColor="inherit"
             variant="fullWidth"
             TabIndicatorProps={{style: {backgroundColor: "transparent"}}}
         >
-          <Tab component={Link} to='/home' label="Home" {...a11yProps(0)}/>
+          <Tab component={Link} to='/home' label={<Logo src={logo} alt='logo'/>} {...a11yProps(0)}/>
           <Tab component={Link} to='/posts' label="Community" {...a11yProps(1)}/>
           <Tab component={Link} to='/quiz' label="The Quiz" {...a11yProps(2)}/>
           <Tab component={Link} to='/profile' label="Profile" {...a11yProps(3)}/>
@@ -80,7 +80,7 @@ const logoutHandle = () => {
           <Tab component={Link} to='/login' label="Login" {...a11yProps(4)}/>
           }
         </Tabs>
-      </AppBar>
+      </Nav>
     </div>
   )}
 
@@ -97,3 +97,13 @@ const logoutHandle = () => {
   }
 
 export default connect(msp, mdp)(NavBar);
+
+const Logo = styled.img`
+  width: 40%;
+  height: 40%;
+`
+const Nav = styled(AppBar)`
+  background-color: #333;
+`
+// height: 50%;
+//   width: 100%;

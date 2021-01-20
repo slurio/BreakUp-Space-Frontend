@@ -1,6 +1,7 @@
 import React from 'react';
 import NavBar from './Components/NavBar';
 import HomePage from './Components/HomePage';
+import Footer from './Components/Footer'
 import PostGallery from './Containers/PostGallery';
 import Quiz from './Components/Quiz';
 import Login from './Components/Login';
@@ -30,6 +31,7 @@ class App extends React.Component {
           <Route path={'/posts'} render={ () => <PostGallery/>} />
           <Route path={'/'} render={ () => <HomePage/>} />
         </Switch>
+        <Footer/>
       </div>
     );
   }

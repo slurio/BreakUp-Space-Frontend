@@ -99,8 +99,8 @@ const logoutHandle = () => {
 export default connect(msp, mdp)(NavBar);
 
 const Logo = styled.img`
-  width: 40%;
-  height: 40%;
+  width: 30%;
+  height: 30%;
 `
 const Nav = styled(AppBar)`
   background-color: #333;

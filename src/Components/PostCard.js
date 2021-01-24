@@ -2,6 +2,7 @@ import React from 'react';
 import {NavLink} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {updateVote, deletePost} from '../Redux/actions';
+import styled from 'styled-components';
 
 const PostCard = (props) => {
 
@@ -22,18 +23,22 @@ const PostCard = (props) => {
     }
 
     return (
-        <div>
-            <NavLink to={`/posts/${props.info.id}`}>
-                <h1>Title: {props.info.title}</h1>
-            </NavLink>
-            <p>Content: {props.info.content}</p>
-            <p>Date: {props.info.date}</p>
-            <p>Username: {props.info.user.username}</p>
-            <p>Up-Votes: {props.info.up_votes}</p>
-            <button name="up" onClick={clickHandle}>👍</button>
-            <button name="down" onClick={clickHandle}>👎</button>
-            <button name="delete" onClick={clickHandle}>X</button>
-        </div>
+        <Container>
+            <ButtonContainer>
+                <PostButton name="up" onClick={clickHandle}>👍</PostButton>
+                <PostButton name="down" onClick={clickHandle}>👎</PostButton>
+                <PostButton name="delete" onClick={clickHandle}>X</PostButton>
+            </ButtonContainer>
+            <PostContainer>
+                <span>posted: {props.info.date}</span>
+                <NavLink to={`/posts/${props.info.id}`}>
+                    <h1>{props.info.title}</h1>
+                </NavLink>
+                <span>{props.info.content}</span>
+                <span>Username: {props.info.user.username}</span>
+                <span>Up-Votes: {props.info.up_votes}</span>
+            </PostContainer> 
+        </Container>    
     )
 }
 
@@ -45,3 +50,33 @@ const mdp = dispatch => {
 }
 
 export default connect(null, mdp)(PostCard);
+
+const Container = styled.div`
+    display: flex;
+    flex-direction: row;
+    border-style: solid; 
+    height: 50%;
+    justify-content: center;
+`
+
+const PostContainer = styled.div`
+    float: right;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    border-style: solid;
+    width: auto;
+`
+const ButtonContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    border-style: solid;
+    width: 35%;
+    top: 0%;
+`
+const PostButton = styled.button`
+    postion: static;
+    justify-content: center;
+    width: 50%;
+`

@@ -2,13 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
-import instagramLogo from '../asset/instagram_logo.svg';
-import Icon from '@material-ui/core/Icon';
-
-import InstagramIcon from '@material-ui/icons/Instagram';
-import FacebookIcon from '@material-ui/icons/Facebook';
-//<Logo src='https://uploads-ssl.webflow.com/5e6437bd68556a7f88367dcc/5eb45a5b62e84d6509f34706_whitelogo.png' alt='logo' />
-
 const Footer = () => {
 
     const clickHandler = () => {
@@ -16,7 +9,7 @@ const Footer = () => {
             top: 0, 
             left: 0, 
             behavior: 'smooth'
-          })
+        })
     }
 
     return (
@@ -29,33 +22,56 @@ const Footer = () => {
             </Container>
 
             <Container>
-                <SocialLinks href='https://www.instagram.com/breakup_space/'>Instagram</SocialLinks>
-                <SocialLinks href='https://www.facebook.com/breakupspace'>Facebook</SocialLinks>
+               
+                <SocialLinks href='https://www.instagram.com/breakup_space/'>
+                    <InstagramIcon xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 30" x="0px" y="0px"><title>Artboard 98</title><path d="M20,0H4A4,4,0,0,0,0,4V20a4,4,0,0,0,4,4H20a4,4,0,0,0,4-4V4A4,4,0,0,0,20,0Zm2,20a2,2,0,0,1-2,2H4a2,2,0,0,1-2-2V4A2,2,0,0,1,4,2H20a2,2,0,0,1,2,2Z"/><path d="M12,6a6,6,0,1,0,6,6A6,6,0,0,0,12,6Zm0,10a4,4,0,1,1,4-4A4,4,0,0,1,12,16Z"/><circle cx="18.5" cy="5.5" r="1.5"/><text x="0" y="39" fill="#000000" font-size="5px" font-weight="bold" font-family="'Helvetica Neue', Helvetica, Arial-Unicode, Arial, Sans-serif">Created by Mas Dhimas</text><text x="0" y="44" fill="#000000" font-size="5px" font-weight="bold" font-family="'Helvetica Neue', Helvetica, Arial-Unicode, Arial, Sans-serif">from the Noun Project</text></InstagramIcon>
+                </SocialLinks>
+
+                <SocialLinks href='https://www.facebook.com/breakupspace'>
+                    <FacebookIcon xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></FacebookIcon>
+                </SocialLinks>
+              
             </Container>
+
         </LinkContainer>
 
         <LogoContainer>
             <Logo onClick={clickHandler} src='https://uploads-ssl.webflow.com/5e6437bd68556a7f88367dcc/5eb45a5b62e84d6509f34706_whitelogo.png' alt='logo' />
-            <p>Copyright © 2020 Breakup Space. All rights reserved.</p>
+            <CopyRightText>Copyright © 2020 Breakup Space. All rights reserved.</CopyRightText>
         </LogoContainer>
         </>
     )
 }
 
-{/* <ContactContainer>
-                <Icon style={{ fontSize: 30, borderRadius: 30, border: 'bfa0e2'  }}>photo_camera</Icon>
-                <Icon style={{ fontSize: 30 }}> facebook</Icon>
-            </ContactContainer> */}
+
             
 
 export default Footer;
 
+const InstagramIcon = styled.svg`
+display: inline-block;
+
+    width: 8%;
+    &:hover {
+        cursor: pointer;
+        fill: #bfa0e2;
+    }
+`
+
+const FacebookIcon = styled(InstagramIcon)`
+    width: 6.5%;
+`
+
 const Logo = styled.img`
-    width: 10%;
-    heigh: 10%;
+    width: 6%;
+    heigh: 6%;
     &:hover {
         cursor: pointer;
     }
+`
+
+const CopyRightText = styled.p`
+    font-size: 10px;
 `
 
 const LogoContainer = styled.div`
@@ -63,7 +79,7 @@ const LogoContainer = styled.div`
     flex-direction: column;
     align-items: center;
     background-color: #EAEAEA;
-    padding-top: 2%;
+    padding-top: 1%;
 `
  
 const Container = styled.div`
@@ -97,8 +113,8 @@ const ListItem = styled(NavLink)`
 `
 
 const SocialLinks = styled.a`
-    padding-left: 25px;
     text-decoration: none;
+    padding-left: 25px;
     &:hover {
         cursor: pointer;
     }

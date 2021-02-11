@@ -37,7 +37,7 @@ const Footer = () => {
 
         <LogoContainer>
             <Logo onClick={clickHandler} src='https://uploads-ssl.webflow.com/5e6437bd68556a7f88367dcc/5eb45a5b62e84d6509f34706_whitelogo.png' alt='logo' />
-            <CopyRightText>Copyright © 2020 Breakup Space. All rights reserved.</CopyRightText>
+            <CopyRightText>Copyright © 2021 Breakup Space. All rights reserved.</CopyRightText>
         </LogoContainer>
         </>
     )

@@ -6,9 +6,12 @@ import PostGallery from './Containers/PostGallery';
 import Quiz from './Components/Quiz';
 import Login from './Components/Login';
 import UserProfile from './Components/UserProfile';
+import About from './Components/About'
 import { Route, Switch} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {getPosts, getBreakUpMessages, fetchUsers, fetchFavorites, getComments} from './Redux/actions';
+import ContactUs from './Components/ContactUs';
+import Partners from './Components/Partners';
 
 class App extends React.Component {
   
@@ -29,6 +32,9 @@ class App extends React.Component {
           <Route path={'/profile'} render={ () => <UserProfile/>} />
           <Route path={'/login'} render={ () => <Login/>} />
           <Route path={'/posts'} render={ () => <PostGallery/>} />
+          <Route path={'/about'} render={ () => <About/>} />
+          <Route path={'/contact_us'} render={ () => <ContactUs/>} />
+          <Route path={'/partners'} render={ () => <Partners/>} />
           <Route path={'/'} render={ () => <HomePage/>} />
         </Switch>
         <Footer/>

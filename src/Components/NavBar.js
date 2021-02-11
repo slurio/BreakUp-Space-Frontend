@@ -105,5 +105,3 @@ const Logo = styled.img`
 const Nav = styled(AppBar)`
   background-color: #333;
 `
-// height: 50%;
-//   width: 100%;

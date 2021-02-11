@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import {Redirect} from 'react-router-dom';
 import styled from 'styled-components';
-import logo from '../asset/navbar_logo.png';
 
 const HomePage = () => {
     
@@ -67,6 +66,7 @@ const Header = styled.h1`
 `
 
 const Image = styled.img`
+    margin-top: 20px;
     height: 80vh;
 `
 const Button = styled.button`

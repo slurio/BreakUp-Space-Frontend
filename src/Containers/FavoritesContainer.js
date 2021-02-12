@@ -11,7 +11,7 @@ const FavoritesContainer = (props) => {
 
     return(
         <div>
-            <h3>Your Saved Message!</h3>
+            <h3>Saved Messages</h3>
             {renderFavorites()}
         </div>
     )

@@ -6,6 +6,7 @@ import Modal from '@material-ui/core/Modal';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
+import {editUser} from '../Redux/actions';
 
 const status = [
     {
@@ -41,11 +42,28 @@ const status = [
 const UserProfile = (props) => {
     const classes = useStyles();
     const [open, setOpen] = useState(false);
-    const [relationship, setRelationship] = React.useState(props.user.relationship_status);
+    const [relationship, setRelationship] = useState(props.user.relationship_status);
+    const [name, setName] = useState(props.user.name);
+    const [email, setEmail] = useState(props.user.email);
+    const [password, setPassword] = useState(props.user.password);
+    const [passwordConfirmation, setPasswordConfirmation] = useState('');
+    const [username, setUsername] = useState(props.user.username);
 
-    const handleChange = (event) => {
-        setRelationship(event.target.value);
-    };
+    const handleChange = (e) => {
+        if (e.target.name === 'relationship') {
+            setRelationship(e.target.value);
+        } else if (e.target.name === 'name') {
+            setName(e.target.value)
+        } else if (e.target.name === 'email') {
+            setEmail(e.target.value)
+        } else if (e.target.name === 'password') {
+            setPassword(e.target.value)
+        } else if (e.target.name === 'password confirmation') {
+            setPasswordConfirmation(e.target.value)
+        } else if (e.target.name === 'username') {
+            setUsername(e.target.value)
+        }     
+    }
 
     const handleOpen = () => {
         setOpen(true)
@@ -53,6 +71,25 @@ const UserProfile = (props) => {
 
     const handleClose = () => {
         setOpen(false)
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+
+        if (password !== passwordConfirmation) {
+            return alert('Passwords do not match');
+        } else {
+            let userData = {
+                name: e.target.name.value,
+                email: e.target.email.value,
+                password: e.target.password.value,
+                username: e.target.username.value,
+                relationship_status: e.target.relationship.value,
+            }
+            props.editUser(props.user.id, userData);
+            handleClose();
+        }
+        
     }
 
     return (
@@ -69,12 +106,16 @@ const UserProfile = (props) => {
                 onClose={handleClose}
             >
                 <div className={classes.root} noValidate autoComplete="off">
-                <div>
+                <form onSubmit={handleSubmit}>
                 <TextField
                     id="outlined-full-width"
                     label="Name"
                     style={{ margin: 8 }}
-                    placeholder={props.user.name}
+                    //placeholder={props.user.name}
+                    //value={relationship}
+                    name = "name"
+                    onChange={handleChange}
+                    value={name}
                     fullWidth
                     margin="normal"
                     InputLabelProps={{
@@ -89,6 +130,9 @@ const UserProfile = (props) => {
                     style={{ margin: 8 }}
                     placeholder={props.user.email}
                     fullWidth
+                    name = "email"
+                    onChange={handleChange}
+                    value={email}
                     margin="normal"
                     InputLabelProps={{
                     shrink: true,
@@ -100,12 +144,18 @@ const UserProfile = (props) => {
                     id="outlined-margin-normal"
                     defaultValue='Enter New Password'
                     className={classes.textField}
+                    name = "password"
+                    onChange={handleChange}
+                    value={password}
                     helperText="no caps please"
                     margin="normal"
                     variant="outlined"
                 />
                 <TextField
                     label="Password Confirmation"
+                    name = "password confirmation"
+                    onChange={handleChange}
+                    value={passwordConfirmation}
                     id="outlined-margin-normal"
                     defaultValue='Confirm Password'
                     className={classes.textField}
@@ -114,6 +164,9 @@ const UserProfile = (props) => {
                 />
                 <TextField
                     label="Username"
+                    name = "username"
+                    onChange={handleChange}
+                    value={username}
                     id="outlined-margin-normal"
                     defaultValue={props.user.username}
                     className={classes.textField}
@@ -127,6 +180,7 @@ const UserProfile = (props) => {
                     className={classes.textField}
                     select
                     label="Relationship Status"
+                    name='relationship'
                     value={relationship}
                     onChange={handleChange}
                     variant="outlined"
@@ -138,8 +192,8 @@ const UserProfile = (props) => {
                     </MenuItem>
                     ))}
                 </TextField>
-                
-                </div>
+                <button>Submit</button>
+                </form>
                 </div>
             </ProfileModal>
 
@@ -156,7 +210,13 @@ const msp = state => {
     }
 }
 
-export default connect(msp, null)(UserProfile);
+const mdp = dispatch => {
+    return {
+        editUser: (userId, userObj) => dispatch(editUser(userId, userObj))
+    }
+}
+
+export default connect(msp, mdp)(UserProfile);
 
 const Container = styled.div`
     display: flex;
@@ -211,7 +271,9 @@ const DataContainer = styled.div`
 `
 
 const ProfileModal = styled(Modal)`
-    background-color: #EAEAEA;
+    background-color: white;
     width: 60%;
     height: 50%;
+    outline: 0;
+    
 `

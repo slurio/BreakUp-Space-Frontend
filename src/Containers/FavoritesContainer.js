@@ -1,4 +1,6 @@
+import { Container } from '@material-ui/core';
 import React from 'react';
+import styled from 'styled-components';
 import {connect} from 'react-redux';
 import FavoriteCard from '../Components/FavoriteCard'
 
@@ -10,10 +12,10 @@ const FavoritesContainer = (props) => {
     }
 
     return(
-        <div>
-            <h3>Your Saved Message!</h3>
+        <FavoriteContainer>
+            <MessageTitle>Saved Messages</MessageTitle>
             {renderFavorites()}
-        </div>
+        </FavoriteContainer>
     )
 }
 
@@ -25,3 +27,12 @@ const msp = state => {
 }
 
 export default connect(msp, null)(FavoritesContainer);
+
+const FavoriteContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`
+const MessageTitle = styled.h3`
+    margin: 0px;
+`

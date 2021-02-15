@@ -35,6 +35,21 @@ export const savePost = (postObj) => {
     }
 }
 
+export const editUser = (userId, userObj) => {
+    return function (dispatch) {
+        fetch(USERS_URL + userId, {
+            method: 'PATCH',
+            headers: {
+                'content-type': 'application/json',
+                accepts: 'application/json'
+            },
+            body: JSON.stringify(userObj)
+        })
+        .then(resp => resp.json())
+        .then(updatedUser => dispatch({type: "UPDATED_USER", payload: updatedUser}))
+    }
+}
+
 export const deletePost = (postId) => {
     return function(dispatch) {
         fetch(POSTS_URL + postId, {

@@ -43,6 +43,9 @@ const rootReducer = (currentState = {
 } else if (action.type === "DELETE_COMMENT") {
   let newCommentsArray = currentState.comments.filter(comment => comment.id !== action.payload.id);
   return {...currentState, comments: newCommentsArray}
+} else if (action.type === "UPDATED_USER") {
+  let newUsersArray = currentState.users.filter(user => user.id !== action.payload.id);
+  return {...currentState, user: action.payload, users: [...newUsersArray, action.payload]}
 } else {
     return currentState;
   }

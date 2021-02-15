@@ -92,7 +92,7 @@ const AboutContainer = styled.div`
 `
 
 const BackgroundImage = styled.img`
-    z-index: -1;
+    z-index: 1;
     width: 100%;
     height: 100%;
     filter: brightness(30%);

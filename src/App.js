@@ -12,6 +12,7 @@ import {connect} from 'react-redux';
 import {getPosts, getBreakUpMessages, fetchUsers, fetchFavorites, getComments} from './Redux/actions';
 import ContactUs from './Components/ContactUs';
 import Partners from './Components/Partners';
+import styled from 'styled-components';
 
 class App extends React.Component {
   
@@ -25,7 +26,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <>
         <NavBar/>
         <Switch>
           <Route path={'/quiz'} render={ () => <Quiz/>} />
@@ -38,7 +39,7 @@ class App extends React.Component {
           <Route path={'/'} render={ () => <HomePage/>} />
         </Switch>
         <Footer/>
-      </div>
+      </>
     );
   }
 
@@ -62,3 +63,8 @@ const mdp = (dispatch) => {
 }
 
 export default connect(msp, mdp)(App);
+
+// const AppContainer = styled.div`
+//   z-index: -10;
+//   background-color: #EAEAEA;
+// `

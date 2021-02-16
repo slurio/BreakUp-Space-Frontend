@@ -197,9 +197,9 @@ const UserProfile = (props) => {
                 </div>
             </ProfileModal>
 
-            <DataContainer>
+            <TextContainer>
                 <FavoritesContainer/>
-            </DataContainer>
+            </TextContainer>
         </Container>
     )
 }
@@ -262,12 +262,16 @@ const ProfileImage = styled.img``
 
 const DataContainer = styled.div`
     display: flex;
-    align-items: center;
     width: 70%;
     margin: 20px;
     padding: 20px 15px;
     background-color: white;
     border-radius: 4px;
+`
+
+const TextContainer = styled(DataContainer)`
+    margin-top: 0px;
+    flex-direction: column;
 `
 
 const ProfileModal = styled(Modal)`

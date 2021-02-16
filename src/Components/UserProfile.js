@@ -272,6 +272,7 @@ const DataContainer = styled.div`
 const TextContainer = styled(DataContainer)`
     margin-top: 0px;
     flex-direction: column;
+    align-items: center;
 `
 
 const ProfileModal = styled(Modal)`

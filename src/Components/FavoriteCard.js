@@ -9,20 +9,86 @@ const FavoriteCard = props => {
     }
 
     return (
-        <CardContainer onClick={handleClick}>
-            {message ? <p>{props.message.message}</p> : <h3>{props.message.theme}</h3>}
-        </CardContainer>
+        <Div>
+        {message ? 
+         <MessageContainer message={message} onClick={handleClick}>
+            <p>{props.message.message}</p>
+        </MessageContainer>
+        :
+        <ThemeContainer message={message} onClick={handleClick}>
+            <ThemeHeader>{props.message.theme}</ThemeHeader>
+        </ThemeContainer>}
+        </Div>
     )
 }
 
 export default FavoriteCard;
 
-const CardContainer = styled.div`
-    width: 28vw;
-    height: 30vh;
-    background-color: #78ff7d;
+const Div = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`
+
+const MessageContainer = styled.div`
+    width: 20vw;
+    height: 40vh;
+    border-radius: 20px;
+    padding: 8px 15px;
+    display: inline-block;
+    color: black;
+    margin-left: 25%;
+    background: #EAEAEA;
+    position: relative;
+    &:after {
+        content: "";
+        position: absolute;
+        z-index: 1;
+        bottom: 0;
+        right: -10px;
+        width: 10px;
+        height: 20px;
+        background: white;
+        border-bottom-left-radius: 10px;
+      }
+    &:before {
+        content: "";
+        position: absolute;
+        z-index: 0;
+        bottom: 0;
+        right: -8px;
+        height: 20px;
+        width: 20px;
+        background: #EAEAEA;
+        background-attachment: fixed;
+        border-bottom-left-radius: 15px;
+    }
+
+`
+const ThemeContainer = styled.div`
+    display: flex;
+    border-radius: 20px 20px 20px 0px;
+    font-size: 18px;
+    justify-content: center;
+    align-items: center;
+    width: 20vw;
+    height: 40vh;
+    background-color: ${props => props.message ? '#EAEAEA' : '#78ff7d'};
+    margin: 10px;
+    text-align: center;
     &:hover {
         cursor: pointer;
-        color: white;
+        color: ${props => props.message ? null : 'white'};;
     }
 `
+
+const ThemeHeader = styled.h3`
+    text-transform: uppercase;
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+    padding-top: 0px;
+    padding-right: 30px;
+    padding-left: 30px;
+`
+

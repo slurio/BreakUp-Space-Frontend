@@ -12,12 +12,12 @@ const FavoritesContainer = (props) => {
     }
 
     return(
-        <FavoriteContainer>
+        <>
             <MessageTitle>Saved Messages</MessageTitle>
             <TextContainer>
                 {renderFavorites()}
             </TextContainer>
-        </FavoriteContainer>
+        </>
     )
 }
 
@@ -30,16 +30,11 @@ const msp = state => {
 
 export default connect(msp, null)(FavoritesContainer);
 
-const FavoriteContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-`
-
 const TextContainer = styled.div`
     display: flex;
     flex-wrap: wrap;
-
 `
 const MessageTitle = styled.h3`
     margin: 0px;
+    margin-bottom: 20px;
 `

@@ -7,6 +7,11 @@ const Quiz = (props) => {
     const [questions, setQuestions] = useState('');
     const [count, setCount] = useState(0);
 
+    const resetQuiz = () => {
+        setStartQuiz(true);
+        setCount(0)
+    }
+
     const handleClick = (event) => {
         setStartQuiz(false);
         let selectedTopic = event.target.innerText.toLowerCase();
@@ -29,7 +34,13 @@ const Quiz = (props) => {
                 return  <Question handleClick={nextQuestion} key={selectedQuestion.id} question={selectedQuestion.question} answers={selectedQuestion.answers}/>
             }
         } else {
-            return <h3>Done! Quiz Complete</h3>
+            //here will need to render text result
+            return (
+                <>
+                    <h3>Done! Quiz Complete</h3>
+                    <button onClick={resetQuiz}>Try Again</button>
+                </>
+            )
         }
     }
 

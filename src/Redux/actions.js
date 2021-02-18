@@ -3,6 +3,16 @@ const BREAKUPMESSAGES_URL = 'http://localhost:3000/breakup_messages/';
 const USERS_URL = 'http://localhost:3000/users/';
 const FAVORITES_URL = 'http://localhost:3000/favorites/';
 const COMMENTS_URL = 'http://localhost:3000/comments/';
+const TOPICS_URL = 'http://localhost:3000/topics/';
+
+
+export const getTopics = () => {
+    return function (dispatch) {
+        fetch(TOPICS_URL)
+        .then(resp => resp.json())
+        .then(topics => dispatch({type: "GET_TOPICS", payload: topics}))
+    }
+}
 
 export const fetchFavorites = () => {
     return function (dispatch) {

@@ -14,9 +14,12 @@ const rootReducer = (currentState = {
   user: '',
   favorites: [],
   comments: [],
+  topics: [],
 }, action) => { 
   if (action.type === "GET_POSTS") {
     return { ...currentState, posts: action.payload};
+  } else if (action.type === "GET_TOPICS") {
+    return {...currentState, topics: action.payload}
   } else if (action.type === "GET_MESSAGES") {
     return {...currentState, messages: action.payload}
   } else if (action.type === "GET_COMMENTS") {

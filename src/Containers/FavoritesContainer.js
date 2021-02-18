@@ -8,7 +8,7 @@ const FavoritesContainer = (props) => {
 
     const renderFavorites = () => {
         let userFavorites = props.favorites.filter(favorite => favorite.user.id === props.user.id)
-        return userFavorites.map(favorite => < FavoriteCard key={favorite.id} message={favorite.breakup_message}/>)
+        return userFavorites.map(favorite => <FavoriteCard key={favorite.id} message={favorite.breakup_message}/>)
     }
 
     return(

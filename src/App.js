@@ -9,7 +9,7 @@ import UserProfile from './Components/UserProfile';
 import About from './Components/About'
 import { Route, Switch} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {getPosts, getBreakUpMessages, fetchUsers, fetchFavorites, getComments} from './Redux/actions';
+import {getTopics, getPosts, getBreakUpMessages, fetchUsers, fetchFavorites, getComments} from './Redux/actions';
 import ContactUs from './Components/ContactUs';
 import Partners from './Components/Partners';
 import styled from 'styled-components';
@@ -22,6 +22,7 @@ class App extends React.Component {
     this.props.fetchUsers();
     this.props.fetchFavorites();
     this.props.fetchComments();
+    this.props.fetchTopics();
   }
 
   render() {
@@ -58,7 +59,8 @@ const mdp = (dispatch) => {
     fetchMessages: () => dispatch(getBreakUpMessages()),
     fetchUsers: () => dispatch(fetchUsers()), 
     fetchFavorites: () => dispatch(fetchFavorites()),
-    fetchComments: () => dispatch(getComments())
+    fetchComments: () => dispatch(getComments()),
+    fetchTopics: () => dispatch(getTopics()),
   }
 }
 

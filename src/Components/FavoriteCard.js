@@ -1,8 +1,11 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
+import {connect} from 'react-redux';
+
 
 const FavoriteCard = props => {
     const [message, setMessage] = useState(false)
+    const topic = props.topics.filter(topic => topic.id === props.message.topic_id)
 
     const handleClick = () => {
         setMessage(!message);
@@ -16,13 +19,19 @@ const FavoriteCard = props => {
         </MessageContainer>
         :
         <ThemeContainer message={message} onClick={handleClick}>
-            <ThemeHeader>{props.message.theme}</ThemeHeader>
+            <ThemeHeader>{topic[0].theme}</ThemeHeader>
         </ThemeContainer>}
         </Div>
     )
 }
 
-export default FavoriteCard;
+const msp = state => {
+    return {
+        topics: state.topics
+    }
+}
+
+export default connect(msp, null)(FavoriteCard);
 
 const Div = styled.div`
     display: flex;

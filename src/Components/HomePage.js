@@ -70,6 +70,7 @@ const Image = styled.img`
     height: 80vh;
 `
 const Button = styled.button`
+    min-width: 100px;
     width: 12vw;
     border-radius: 12px;
     border: #bfa0e2;
@@ -79,6 +80,7 @@ const Button = styled.button`
     font-size: 14px;
     margin-top: 20px;
     padding: 15px 36px;
+    text-align: center;
     &:hover {
         cursor: pointer;
     }

@@ -5,6 +5,7 @@ import Question from './Question';
 const Quiz = (props) => {
     const [startQuiz, setStartQuiz] = useState(true);
     const [questions, setQuestions] = useState('');
+    const [count, setCount] = useState(0);
 
     const handleClick = (event) => {
         setStartQuiz(false);
@@ -13,9 +14,22 @@ const Quiz = (props) => {
         setQuestions(topicQuestions.quizzes);
     }
 
+    const nextQuestion = (answer) => {
+        console.log(answer)
+        setCount(count+1)
+        renderQuestions()
+    }
+
     const renderQuestions = () => {
-        if (questions) {
-            return questions.map(question => <Question key={question.id} question={question.question} answers={question.answers}/>)
+        let total = questions.length;
+
+        if(count < total) {
+            if (questions) {
+                let selectedQuestion = questions[count]
+                return  <Question handleClick={nextQuestion} key={selectedQuestion.id} question={selectedQuestion.question} answers={selectedQuestion.answers}/>
+            }
+        } else {
+            return <h3>Done! Quiz Complete</h3>
         }
     }
 

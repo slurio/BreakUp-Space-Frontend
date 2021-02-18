@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Question = (props) => {
+const QuestionCard = (props) => {
 
     const handleClick = (event) => {
         props.handleClick(event.target.innerText)
@@ -19,4 +19,4 @@ const Question = (props) => {
     )
 }
 
-export default Question;
+export default QuestionCard;

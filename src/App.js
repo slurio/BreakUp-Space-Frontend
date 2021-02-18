@@ -3,7 +3,7 @@ import NavBar from './Components/NavBar';
 import HomePage from './Components/HomePage';
 import Footer from './Components/Footer'
 import PostGallery from './Containers/PostGallery';
-import Quiz from './Components/Quiz';
+import BreakupQuizContainer from './Containers/BreakupQuizContainer';
 import Login from './Components/Login';
 import UserProfile from './Components/UserProfile';
 import About from './Components/About'
@@ -29,7 +29,7 @@ class App extends React.Component {
       <>
         <NavBar/>
         <Switch>
-          <Route path={'/quiz'} render={ () => <Quiz/>} />
+          <Route path={'/quiz'} render={ () => <BreakupQuizContainer/>} />
           <Route path={'/profile'} render={ () => <UserProfile/>} />
           <Route path={'/login'} render={ () => <Login/>} />
           <Route path={'/posts'} render={ () => <PostGallery/>} />

@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 
 const FavoriteCard = props => {
     const [message, setMessage] = useState(false)
-    const topic = props.topics.filter(topic => topic.id === props.message.topic_id)
+    const topic = props.topics.find(topic => topic.id === props.message.topic_id)
 
     const handleClick = () => {
         setMessage(!message);
@@ -19,7 +19,7 @@ const FavoriteCard = props => {
         </MessageContainer>
         :
         <ThemeContainer message={message} onClick={handleClick}>
-            <ThemeHeader>{topic[0].theme}</ThemeHeader>
+            <ThemeHeader>{topic.theme}</ThemeHeader>
         </ThemeContainer>}
         </Div>
     )

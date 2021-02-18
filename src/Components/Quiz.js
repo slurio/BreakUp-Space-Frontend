@@ -1,10 +1,22 @@
 import React, {useState} from 'react';
+import {connect} from 'react-redux';
+import Question from './Question';
 
-const Quiz = () => {
+const Quiz = (props) => {
     const [startQuiz, setStartQuiz] = useState(true);
+    const [questions, setQuestions] = useState('');
 
-    const handleClick = () => {
+    const handleClick = (event) => {
         setStartQuiz(false);
+        let selectedTopic = event.target.innerText.toLowerCase();
+        let topicQuestions = props.topics.find(topic => topic.theme === selectedTopic);
+        setQuestions(topicQuestions.quizzes);
+    }
+
+    const renderQuestions = () => {
+        if (questions) {
+            return questions.map(question => <Question key={question.id} question={question.question} answers={question.answers}/>)
+        }
     }
 
     return (
@@ -13,16 +25,22 @@ const Quiz = () => {
             <>
                 <h3>Why is it time to say goodbye?</h3>
                 <ul onClick={handleClick}>
-                    <li>Not ready to date (theme: Not Ready For A Relationship Right Now)</li>
-                    <li>Bad timing (theme: Too Busy To Date)</li>
-                    <li>Friendzone (theme: Getting A Friendship vibe)</li>
-                    <li>No connection (theme: Not Feeling A Connection)</li>
+                    <li>Not ready to date</li>
+                    <li>Bad timing</li>
+                    <li>Friendzone</li>
+                    <li>No connection</li>
                 </ul>
             </>
             :
-            <h3>Questions Start From Backend</h3>}
+            renderQuestions()}
         </div>
     )
 }
 
-export default Quiz;
+const msp = state => {
+    return {
+        topics: state.topics
+    }
+}
+
+export default connect(msp, null)(Quiz);

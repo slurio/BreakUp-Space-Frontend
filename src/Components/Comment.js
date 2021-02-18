@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {connect} from 'react-redux';
 import {updateCommentVote, deleteComment} from '../Redux/actions.js'
 
@@ -15,7 +15,7 @@ const Comment = props => {
                 up_votes: props.comment.up_votes - 1
             }
             props.upVoteHandle(upVotes, props.comment.id)
-        } else if (event.target.name = 'delete') {
+        } else if (event.target.name === 'delete') {
             props.removeComment(props.comment.id)
         }
     }

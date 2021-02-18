@@ -28,7 +28,7 @@ export const getPosts = () => {
         .then(resp => resp.json())
         .then(posts => dispatch({type: "GET_POSTS", payload: posts}))
     }
-};
+}
 
 export const savePost = (postObj) => {
     return function (dispatch) {
@@ -99,7 +99,7 @@ export const fetchUsers = () => {
         .then(resp => resp.json())
         .then(users => dispatch({type: "FETCH_USERS", payload: users}))
     }
-};
+}
 
 export const loginUser = user => ({type: "SET_USER", payload: user});
 
@@ -120,7 +120,8 @@ export const saveComment = (commentObj) => {
                 'accepts': 'application/json'
             }, 
             body: JSON.stringify(commentObj)
-        }) .then(resp => resp.json())
+        })
+        .then(resp => resp.json())
         .then(comment => dispatch({type: "NEW_COMMENT", payload: comment}))
     }
 }
@@ -134,7 +135,8 @@ export const updateCommentVote = (upVoteObj, commentId) => {
                 'accepts': 'application/json'
             },
             body: JSON.stringify(upVoteObj)
-        }) .then(resp => resp.json())
+        }) 
+        .then(resp => resp.json())
         .then(updatedComment => dispatch({type: "UPDATE_COMMENT", payload: updatedComment}))
     }
 }
@@ -143,7 +145,8 @@ export const deleteComment = (commentId) => {
     return function(dispatch) {
         fetch(COMMENTS_URL + commentId, {
             method: 'DELETE'
-        }) .then(resp => resp.json())
+        })
+        .then(resp => resp.json())
         .then(deletedComment => dispatch({type:"DELETE_COMMENT", payload: deletedComment}))
     }
 }

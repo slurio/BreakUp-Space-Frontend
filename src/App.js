@@ -12,7 +12,6 @@ import {connect} from 'react-redux';
 import {getTopics, getPosts, getBreakUpMessages, fetchUsers, fetchFavorites, getComments} from './Redux/actions';
 import ContactUs from './Components/ContactUs';
 import Partners from './Components/Partners';
-import styled from 'styled-components';
 
 class App extends React.Component {
   
@@ -65,8 +64,3 @@ const mdp = (dispatch) => {
 }
 
 export default connect(msp, mdp)(App);
-
-// const AppContainer = styled.div`
-//   z-index: -10;
-//   background-color: #EAEAEA;
-// `

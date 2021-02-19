@@ -1,9 +1,11 @@
 import React, {useState} from 'react';
 import {connect} from 'react-redux';
 import QuestionCard from '../Components/QuestionCard';
+import ResultCard from '../Components/ResultCard';
 
 const BreakupQuizContainer = (props) => {
     const [startQuiz, setStartQuiz] = useState(true);
+    const [topic, setTopic] = useState('')
     const [questions, setQuestions] = useState('');
     const [count, setCount] = useState(0);
     const [messageSubject, setMessageSubject] = useState('');
@@ -19,12 +21,23 @@ const BreakupQuizContainer = (props) => {
         setStartQuiz(false);
         let selectedTopic = event.target.innerText.toLowerCase();
         let topicQuestions = props.topics.find(topic => topic.theme === selectedTopic);
+        setTopic(topicQuestions.theme);
         setQuestions(topicQuestions.quizzes);
     }
 
     const nextQuestion = (answer) => {
-        if(count === 0) {
-            setMessageSubject(answer.innerText);
+        if(count === 0 && topic !== 'friendzone') {
+            setMessageSubject(answer.innerText.toLowerCase());
+            setCount(count+1)
+            renderQuestions()
+        } else if (messageSubject === 'made me feel uncomfortable' && count === 1) {
+            setMessageTone(answer.innerText.toLowerCase())
+            setCount(questions.length)
+            renderQuestions()  
+        // } else if (topic === 'no connection') {
+        //     setMessageTone(answer.innerText.toLowerCase())
+        //     setCount(count+1)
+        //     renderQuestions()
         } else {
             switch(parseInt(answer.id)) {
                 case 1:
@@ -39,26 +52,46 @@ const BreakupQuizContainer = (props) => {
                 default:
                     break;
             }
+            setCount(count+1)
+            renderQuestions()
         }
-        console.log(answer)
-        setCount(count+1)
-        renderQuestions()
     }
 
-    const renderMessage = () => {
-        console.log(messageTone)
+    const renderMessage = () => {  
+        // which tone was most clicked / need case if all were clicked once
+        let selectedTone = '';
+        for (let tone in messageTone) {
+            if(selectedTone !== '' && messageTone[tone] > messageTone[selectedTone]) {
+                selectedTone = tone;
+            } else if (selectedTone === '') {
+                selectedTone = tone;
+            }
+        }
+
+        let message;
+
+        if (topic === 'no connection' && messageSubject === 'made me feel uncomfortable') {
+            message = props.messages.find(message =>  message.tone === messageTone && message.subject === messageSubject)
+        } else if(!messageSubject) {
+            message = props.messages.find(message => message.topic.theme === topic && message.tone === selectedTone)
+        } else {
+            message = props.messages.find(message => message.topic.theme === topic && message.tone === selectedTone && message.subject === messageSubject)
+        }
+
+        return <ResultCard message={message}/>
     }
 
     const renderQuestions = () => {
-        let total = questions.length;
-
-        if(count < total) {
+        if (messageSubject === 'just not feeling it' && count === 1) {
+            setCount(count + 1)
+            let selectedQuestion = questions[count];
+            return  <QuestionCard handleClick={nextQuestion} key={selectedQuestion.id} question={selectedQuestion.question} answers={selectedQuestion.answers}/>
+        } else if(count < questions.length) {
             if (questions) {
                 let selectedQuestion = questions[count]
                 return  <QuestionCard handleClick={nextQuestion} key={selectedQuestion.id} question={selectedQuestion.question} answers={selectedQuestion.answers}/>
             }
         } else {
-            //here will need to render text result
             return (
                 <>
                     <h3>Done! Quiz Complete</h3>
@@ -89,7 +122,8 @@ const BreakupQuizContainer = (props) => {
 
 const msp = state => {
     return {
-        topics: state.topics
+        topics: state.topics,
+        messages: state.messages
     }
 }
 

@@ -8,7 +8,7 @@ const QuestionCard = (props) => {
 
     const renderAnswers = () => {
         let answers = props.answers.split('|')
-        return answers.map(answer => <li id={answers.indexOf(answer) + 1} onClick={handleClick}>{answer}</li>)
+        return answers.map(answer => <li key={answer} id={answers.indexOf(answer) + 1} onClick={handleClick}>{answer}</li>)
     }
 
     return (

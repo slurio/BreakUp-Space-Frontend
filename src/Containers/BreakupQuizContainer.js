@@ -6,10 +6,13 @@ const BreakupQuizContainer = (props) => {
     const [startQuiz, setStartQuiz] = useState(true);
     const [questions, setQuestions] = useState('');
     const [count, setCount] = useState(0);
+    const [messageSubject, setMessageSubject] = useState('');
+    const [messageTone, setMessageTone] = useState({'casual': 0, 'friendly': 0, 'direct': 0});
 
     const resetQuiz = () => {
         setStartQuiz(true);
-        setCount(0)
+        setCount(0);
+        setMessageTone({'casual': 0, 'friendly': 0, 'direct': 0});
     }
 
     const handleClick = (event) => {
@@ -20,9 +23,30 @@ const BreakupQuizContainer = (props) => {
     }
 
     const nextQuestion = (answer) => {
+        if(count === 0) {
+            setMessageSubject(answer.innerText);
+        } else {
+            switch(parseInt(answer.id)) {
+                case 1:
+                    setMessageTone({...messageTone, casual: messageTone['casual']+1})
+                    break;
+                case 2:
+                    setMessageTone({...messageTone, friendly: messageTone['friendly']+1})
+                    break;
+                case 3:
+                    setMessageTone({...messageTone, direct: messageTone['direct']+1})
+                    break;
+                default:
+                    break;
+            }
+        }
         console.log(answer)
         setCount(count+1)
         renderQuestions()
+    }
+
+    const renderMessage = () => {
+        console.log(messageTone)
     }
 
     const renderQuestions = () => {
@@ -38,6 +62,7 @@ const BreakupQuizContainer = (props) => {
             return (
                 <>
                     <h3>Done! Quiz Complete</h3>
+                    {renderMessage()}
                     <button onClick={resetQuiz}>Try Again</button>
                 </>
             )

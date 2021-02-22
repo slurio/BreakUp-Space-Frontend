@@ -29,14 +29,14 @@ const BreakupQuizContainer = (props) => {
                         <TopicQuestion>Why is it time to say goodbye?</TopicQuestion>
                     </TopicQuestionContainer>
 
-                    <TopicListContainer>
+                    {/* <TopicListContainer> */}
                         <TopicList onClick={handleClick}>
                             <TopicLi>Not ready to date</TopicLi>
                             <TopicLi>Bad timing</TopicLi>
                             <TopicLi>Friendzone</TopicLi>
                             <LastTopicLi>No connection</LastTopicLi>
                         </TopicList>
-                    </TopicListContainer>
+                    {/* </TopicListContainer> */}
                 </div>
                 :
                 <Quiz resetQuiz={resetQuiz} topic={topic} questions={questions}/>}
@@ -61,12 +61,14 @@ const QuizContainer = styled.div`
 `
 
 const ScreenContainer = styled.div`
-    width: 450px;
+    width: 370px;
     border: solid 1px grey;
     display: flex;
     flex-direction: column;
     padding: 10px;
     margin-top: 20px;
+    margin-bottom: 20px;
+    background: white;
 `
 
 const TopicQuestionContainer = styled.div`
@@ -83,7 +85,7 @@ const TopicQuestion = styled.h3`
     margin-bottom: 5px;
     display: inline-block;
     margin-right: 25%;
-    background-color: white;
+    background-color: #EAEAEA;
     position: relative;
     &:before {
         content: "";
@@ -93,7 +95,7 @@ const TopicQuestion = styled.h3`
         left: -7px;
         height: 20px;
         width: 20px;
-        background: white;
+        background: #EAEAEA;
         border-bottom-right-radius: 15px;
     }
     &:after {
@@ -104,23 +106,22 @@ const TopicQuestion = styled.h3`
         left: -10px;
         width: 10px;
         height: 20px;
-        background: #eaeaea;
+        background: white;
         border-bottom-right-radius: 10px;
       }
    
 `
 
-const TopicListContainer = styled.div`
-margin-top: 30px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
+const TopicList = styled.div`
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
 `
 
-const TopicList = styled.ul`
-  
-`
-const TopicLi = styled.li`
+// const TopicList = styled.div``
+
+const TopicLi = styled.div`
 border-radius: 20px;
 padding: 8px 15px;
 margin-top: 5px;
@@ -158,7 +159,7 @@ const LastTopicLi = styled(TopicLi)`
     right: -10px;
     width: 10px;
     height: 20px;
-    background: #eaeaea;
+    background: white;
     border-bottom-left-radius: 10px;
   }
 `

@@ -6,6 +6,7 @@ import {createStore, applyMiddleware} from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import { BrowserRouter as Router } from 'react-router-dom';
+import ScrollToTop from './Components/ScrollToTop';
 
 const rootReducer = (currentState = {
   posts: [],
@@ -59,7 +60,9 @@ const store = createStore(rootReducer, applyMiddleware(thunk))
 ReactDOM.render(
   <Provider store={store}>
     <Router>
-      <App />
+      <ScrollToTop>
+        <App />
+      </ScrollToTop>
     </Router>
   </Provider>,
   document.getElementById('root')

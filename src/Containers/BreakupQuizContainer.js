@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {connect} from 'react-redux';
 import Quiz from '../Components/Quiz';
+import styled from 'styled-components';
 
 const BreakupQuizContainer = (props) => {
     const [startQuiz, setStartQuiz] = useState(true);
@@ -24,12 +25,12 @@ const BreakupQuizContainer = (props) => {
             {startQuiz ?
             <>
                 <h3>Why is it time to say goodbye?</h3>
-                <ul onClick={handleClick}>
-                    <li>Not ready to date</li>
-                    <li>Bad timing</li>
-                    <li>Friendzone</li>
-                    <li>No connection</li>
-                </ul>
+                <TopicList onClick={handleClick}>
+                    <TopicLi>Not ready to date</TopicLi>
+                    <TopicLi>Bad timing</TopicLi>
+                    <TopicLi>Friendzone</TopicLi>
+                    <TopicLi>No connection</TopicLi>
+                </TopicList>
             </>
             :
             <Quiz resetQuiz={resetQuiz} topic={topic} questions={questions}/>}
@@ -44,3 +45,14 @@ const msp = state => {
 }
 
 export default connect(msp, null)(BreakupQuizContainer);
+
+const TopicList = styled.ul`
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+`
+const TopicLi = styled.li`
+    &:hover {
+        cursor: pointer;
+    }
+`

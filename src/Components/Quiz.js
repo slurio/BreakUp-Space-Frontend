@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import {connect} from 'react-redux';
 import QuestionCard from '../Components/QuestionCard';
 import ResultCard from '../Components/ResultCard';
 

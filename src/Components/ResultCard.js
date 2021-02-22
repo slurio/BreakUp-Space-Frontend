@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import styled from 'styled-components';
 
 const ResultCard = (props) => {
 
@@ -22,7 +23,7 @@ const ResultCard = (props) => {
         } else {
             message = props.messages.find(message => message.topic.theme === props.topic && message.tone === selectedTone && message.subject === props.messageSubject)
         }
-        return <p>{message.message}</p>
+        return <Message>{message.message}</Message>
     }
 
     return (
@@ -41,3 +42,45 @@ const msp = state => {
 }
 
 export default connect(msp, null)(ResultCard);
+
+const Message = styled.div`
+border-radius: 20px;
+padding: 8px 15px;
+margin-top: 5px;
+margin-bottom: 5px;
+display: inline-block;
+color: white;
+margin-left: 25%;
+background: #bfa0e2;
+background-attachment: fixed;
+position: relative;
+
+    &:hover {
+        cursor: pointer;
+    }
+
+margin-bottom: 30px;
+&:before{
+    content: "";
+    position: absolute;
+    z-index: 0;
+    bottom: 0;
+    right: -8px;
+    height: 20px;
+    width: 20px;
+    background: #bfa0e2;
+    background-attachment: fixed;
+    border-bottom-left-radius: 15px;
+  }
+  &:after{
+    content: "";
+    position: absolute;
+    z-index: 1;
+    bottom: 0;
+    right: -10px;
+    width: 10px;
+    height: 20px;
+    background: white;
+    border-bottom-left-radius: 10px;
+  }
+`

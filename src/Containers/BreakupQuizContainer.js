@@ -25,13 +25,18 @@ const BreakupQuizContainer = (props) => {
             <ScreenContainer>
                 {startQuiz ?
                 <div>
-                    <h3>Why is it time to say goodbye?</h3>
-                    <TopicList onClick={handleClick}>
-                        <TopicLi>Not ready to date</TopicLi>
-                        <TopicLi>Bad timing</TopicLi>
-                        <TopicLi>Friendzone</TopicLi>
-                        <TopicLi>No connection</TopicLi>
-                    </TopicList>
+                    <TopicQuestionContainer>
+                        <TopicQuestion>Why is it time to say goodbye?</TopicQuestion>
+                    </TopicQuestionContainer>
+
+                    <TopicListContainer>
+                        <TopicList onClick={handleClick}>
+                            <TopicLi>Not ready to date</TopicLi>
+                            <TopicLi>Bad timing</TopicLi>
+                            <TopicLi>Friendzone</TopicLi>
+                            <TopicLi>No connection</TopicLi>
+                        </TopicList>
+                    </TopicListContainer>
                 </div>
                 :
                 <Quiz resetQuiz={resetQuiz} topic={topic} questions={questions}/>}
@@ -64,12 +69,91 @@ const ScreenContainer = styled.div`
     margin-top: 20px;
 `
 
+const TopicQuestionContainer = styled.div`
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+`
+
+const TopicQuestion = styled.h3`
+    border-radius: 20px;
+    padding: 8px 15px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    display: inline-block;
+    margin-right: 25%;
+    background-color: white;
+    position: relative;
+    &:before {
+        content: "";
+        position: absolute;
+        z-index: 0;
+        bottom: 0;
+        left: -7px;
+        height: 20px;
+        width: 20px;
+        background: white;
+        border-bottom-right-radius: 15px;
+    }
+    &:after {
+        content: "";
+        position: absolute;
+        z-index: 1;
+        bottom: 0;
+        left: -10px;
+        width: 10px;
+        height: 20px;
+        background: #eaeaea;
+        border-bottom-right-radius: 10px;
+      }
+   
+`
+
+const TopicListContainer = styled.div`
+margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+`
+
 const TopicList = styled.ul`
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
+  
 `
 const TopicLi = styled.li`
+border-radius: 20px;
+padding: 8px 15px;
+margin-top: 5px;
+margin-bottom: 5px;
+display: inline-block;
+color: white;
+margin-left: 25%;
+background: #bfa0e2;
+background-attachment: fixed;
+position: relative;
+&:before{
+    content: "";
+    position: absolute;
+    z-index: 0;
+    bottom: 0;
+    right: -8px;
+    height: 20px;
+    width: 20px;
+    background: #bfa0e2;
+    background-attachment: fixed;
+    border-bottom-left-radius: 15px;
+  }
+  &:after{
+    content: "";
+    position: absolute;
+    z-index: 1;
+    bottom: 0;
+    right: -10px;
+    width: 10px;
+    height: 20px;
+    background: #eaeaea;
+    border-bottom-left-radius: 10px;
+  }
     &:hover {
         cursor: pointer;
     }

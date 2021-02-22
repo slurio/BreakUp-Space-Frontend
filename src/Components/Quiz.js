@@ -42,29 +42,6 @@ const Quiz = (props) => {
         }
     }
 
-    const renderMessage = () => {  
-        let selectedTone = '';
-        for (let tone in messageTone) {
-            if(selectedTone !== '' && messageTone[tone] > messageTone[selectedTone]) {
-                selectedTone = tone;
-            } else if (selectedTone === '') {
-                selectedTone = tone;
-            }
-        }
-
-        let message;
-
-        if (props.topic === 'no connection' && messageSubject === 'made me feel uncomfortable') {
-            message = props.messages.find(message =>  message.tone === messageTone && message.subject === messageSubject)
-        } else if(!messageSubject) {
-            message = props.messages.find(message => message.topic.theme === props.topic && message.tone === selectedTone)
-        } else {
-            message = props.messages.find(message => message.topic.theme === props.topic && message.tone === selectedTone && message.subject === messageSubject)
-        }
-
-        return <ResultCard message={message}/>
-    }
-
     const renderQuestions = () => {
         if (messageSubject === 'just not feeling it' && count === 1) {
             setCount(count + 1)
@@ -77,11 +54,7 @@ const Quiz = (props) => {
             }
         } else {
             return (
-                <>
-                    <h3>Done! Quiz Complete</h3>
-                    {renderMessage()}
-                    <button onClick={resetQuiz}>Try Again</button>
-                </>
+                <ResultCard resetQuiz={resetQuiz} topic={props.topic} messageTone={messageTone} messageSubject={messageSubject}/>
             )
         }
     }
@@ -91,11 +64,4 @@ const Quiz = (props) => {
     )
 }
 
-
-const msp = state => {
-    return {
-        messages: state.messages
-    }
-}
-
-export default connect(msp, null)(Quiz);
+export default Quiz;

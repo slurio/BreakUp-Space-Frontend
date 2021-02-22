@@ -34,7 +34,7 @@ const BreakupQuizContainer = (props) => {
                             <TopicLi>Not ready to date</TopicLi>
                             <TopicLi>Bad timing</TopicLi>
                             <TopicLi>Friendzone</TopicLi>
-                            <TopicLi>No connection</TopicLi>
+                            <LastTopicLi>No connection</LastTopicLi>
                         </TopicList>
                     </TopicListContainer>
                 </div>
@@ -131,6 +131,13 @@ margin-left: 25%;
 background: #bfa0e2;
 background-attachment: fixed;
 position: relative;
+
+    &:hover {
+        cursor: pointer;
+    }
+`
+
+const LastTopicLi = styled(TopicLi)`
 &:before{
     content: "";
     position: absolute;
@@ -154,7 +161,4 @@ position: relative;
     background: #eaeaea;
     border-bottom-left-radius: 10px;
   }
-    &:hover {
-        cursor: pointer;
-    }
 `

@@ -24,20 +24,19 @@ const BreakupQuizContainer = (props) => {
         <QuizContainer>
             <ScreenContainer>
                 {startQuiz ?
-                <div>
+                <>
                     <TopicQuestionContainer>
                         <TopicQuestion>Why is it time to say goodbye?</TopicQuestion>
                     </TopicQuestionContainer>
 
-                    {/* <TopicListContainer> */}
                         <TopicList onClick={handleClick}>
                             <TopicLi>Not ready to date</TopicLi>
                             <TopicLi>Bad timing</TopicLi>
                             <TopicLi>Friendzone</TopicLi>
                             <LastTopicLi>No connection</LastTopicLi>
                         </TopicList>
-                    {/* </TopicListContainer> */}
-                </div>
+
+                </>
                 :
                 <Quiz resetQuiz={resetQuiz} topic={topic} questions={questions}/>}
             </ScreenContainer>
@@ -67,7 +66,6 @@ const ScreenContainer = styled.div`
     flex-direction: column;
     padding: 10px;
     margin-top: 20px;
-    margin-bottom: 20px;
     background: white;
 `
 
@@ -87,6 +85,8 @@ const TopicQuestion = styled.h3`
     margin-right: 25%;
     background-color: #EAEAEA;
     position: relative;
+    font-weight: 600;
+    font-size: 16px;
     &:before {
         content: "";
         position: absolute;
@@ -109,7 +109,6 @@ const TopicQuestion = styled.h3`
         background: white;
         border-bottom-right-radius: 10px;
       }
-   
 `
 
 const TopicList = styled.div`
@@ -118,8 +117,6 @@ const TopicList = styled.div`
     flex-direction: column;
     align-items: flex-end;
 `
-
-// const TopicList = styled.div``
 
 const TopicLi = styled.div`
 border-radius: 20px;
@@ -139,6 +136,7 @@ position: relative;
 `
 
 const LastTopicLi = styled(TopicLi)`
+margin-bottom: 30px;
 &:before{
     content: "";
     position: absolute;

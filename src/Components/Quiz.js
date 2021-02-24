@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {connect} from 'react-redux';
 import QuestionCard from '../Components/QuestionCard';
 import ResultCard from '../Components/ResultCard';
 
@@ -6,7 +7,8 @@ const Quiz = (props) => {
     const [count, setCount] = useState(0);
     const [messageSubject, setMessageSubject] = useState('');
     const [messageTone, setMessageTone] = useState({'casual': 0, 'friendly': 0, 'direct': 0});
-    
+  
+
     const resetQuiz = () => {
         props.resetQuiz();
         setCount(0);
@@ -40,6 +42,33 @@ const Quiz = (props) => {
             renderQuestions()
         }
     }
+    
+    let text;
+
+    const renderResult = () => {  
+        let selectedTone = '';
+        for (let tone in messageTone) {
+            if(selectedTone !== '' && messageTone[tone] > messageTone[selectedTone]) {
+                selectedTone = tone;
+            } else if (selectedTone === '') {
+                selectedTone = tone;
+            }
+        }
+
+        let foundMessage;
+
+        if (props.topic === 'no connection' && props.messageSubject === 'made me feel uncomfortable') {
+            foundMessage = props.messages.find(message =>  message.tone === messageTone && message.subject === messageSubject);
+        } else if(!messageSubject) {
+            foundMessage = props.messages.find(message => message.topic.theme === props.topic && message.tone === selectedTone)
+        } else {
+            foundMessage = props.messages.find(message => message.topic.theme === props.topic && message.tone === selectedTone && message.subject === messageSubject)
+        }
+
+        text = foundMessage.message;
+
+        // return <Message>{foundMessage.message}</Message>
+    }
 
     const renderQuestions = () => {
         if (messageSubject === 'just not feeling it' && count === 1) {
@@ -52,8 +81,9 @@ const Quiz = (props) => {
                 return  <QuestionCard handleClick={nextQuestion} key={selectedQuestion.id} question={selectedQuestion.question} answers={selectedQuestion.answers}/>
             }
         } else {
+            renderResult()
             return (
-                <ResultCard resetQuiz={resetQuiz} topic={props.topic} messageTone={messageTone} messageSubject={messageSubject}/>
+                <ResultCard resetQuiz={resetQuiz} result={text} />
             )
         }
     }
@@ -63,4 +93,10 @@ const Quiz = (props) => {
     )
 }
 
-export default Quiz;
+const msp = state => {
+    return {
+        messages: state.messages
+    }
+}
+
+export default connect(msp, null)(Quiz);

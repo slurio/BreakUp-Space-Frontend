@@ -43,53 +43,30 @@ const ResultCard = (props) => {
     const [area, setArea] = useState('');
     const [middle, setMiddle] = useState('');
     const [end, setEnd] = useState('');
-    // const [text, setText] = useState('');
+    const [message, setMessage] = useState(props.result);
+
 
     
-
-    // const renderResult = () => {  
-    //     let selectedTone = '';
-    //     for (let tone in props.messageTone) {
-    //         if(selectedTone !== '' && props.messageTone[tone] > props.messageTone[selectedTone]) {
-    //             selectedTone = tone;
-    //         } else if (selectedTone === '') {
-    //             selectedTone = tone;
-    //         }
-    //     }
-
-    //     let foundMessage;
-
-    //     if (props.topic === 'no connection' && props.messageSubject === 'made me feel uncomfortable') {
-    //         foundMessage = props.messages.find(message =>  message.tone === props.messageTone && message.subject === props.messageSubject);
-    //     } else if(!props.messageSubject) {
-    //         foundMessage = props.messages.find(message => message.topic.theme === props.topic && message.tone === selectedTone)
-    //     } else {
-    //         foundMessage = props.messages.find(message => message.topic.theme === props.topic && message.tone === selectedTone && message.subject === props.messageSubject)
-    //     }
-
-    //     // setText(foundMessage.message);
-
-    //     return <Message>{foundMessage.message}</Message>
-    // }
-
-    
-    const sendMessage = () => {
+    const sendMessage = (event) => {
+        event.preventDefault();
 
         let smsObj = {
             user_number: '+1' + area + middle + end,
-            message: 'test'
+            message: message
         }
        
-        fetch('http://localhost:3000/sms_messages/', {
-            method:'POST',
-            headers: {
-                'content-type': 'application/json',
-                accepts: "application/json"
-            },
-            body: JSON.stringify(smsObj)
-        })
-        .then(resp => resp.json())
-        .then(result => console.log(result))
+        // fetch('http://localhost:3000/sms_messages/', {
+        //     method:'POST',
+        //     headers: {
+        //         'content-type': 'application/json',
+        //         accepts: "application/json"
+        //     },
+        //     body: JSON.stringify(smsObj)
+        // })
+        // .then(resp => resp.json())
+        // .then(result => console.log(result))
+
+        console.log(smsObj);
     }
 
     const changeHandle = (event) => {
@@ -99,6 +76,8 @@ const ResultCard = (props) => {
             setMiddle(event.target.value);
         } else if (event.target.name === "end") {
             setEnd(event.target.value);
+        } else if (event.target.name === "message") {
+            setMessage(event.target.value);
         }
     }
 
@@ -106,11 +85,12 @@ const ResultCard = (props) => {
             <form style={modalStyle} className={classes.paper} onSubmit={sendMessage}>
                 <label>Please enter the phone number that you would like this message sent to: </label>
                 <span>(</span>
-                <input name="area" type="number" onChange={changeHandle} max="3" min="3" />
+                <input name="area" type="text" onChange={changeHandle} max="3" min="3" />
                 <span>)</span>
-                <input name="middle" type="number" onChange={changeHandle} max="3" min="3" />
+                <input name="middle" type="text" onChange={changeHandle} max="3" min="3" />
                 <span> - </span>
-                <input name="end" type="number" onChange={changeHandle} max="3" min="3" />
+                <input name="end" type="text" onChange={changeHandle} max="3" min="3" />
+                <input name="message" type="textarea" onChange={changeHandle} value={message} />
                 <button>Submit</button>
             </form>   
         )
@@ -118,10 +98,9 @@ const ResultCard = (props) => {
     return (
         <>
             <h3>Done! Quiz Complete</h3>
-            {/* {renderResult()} */}
             <Message>{props.result}</Message>
             <button onClick={props.resetQuiz}>Try Again</button> 
-            {/* <button type="button" onClick={handleOpen}>Send Text!</button> 
+            <button type="button" onClick={handleOpen}>Send Text!</button> 
             <Modal
                 open={open}
                 onClose={handleClose}
@@ -129,7 +108,7 @@ const ResultCard = (props) => {
                 aria-describedby="simple-modal-description"
             >
             {phoneNumber}
-            </Modal>        */}
+            </Modal>       
         </>
     )
 }

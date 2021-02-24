@@ -42,7 +42,7 @@ const Quiz = (props) => {
             renderQuestions()
         }
     }
-    
+
     let text;
 
     const renderResult = () => {  
@@ -67,7 +67,6 @@ const Quiz = (props) => {
 
         text = foundMessage.message;
 
-        // return <Message>{foundMessage.message}</Message>
     }
 
     const renderQuestions = () => {

@@ -26,11 +26,32 @@ const ResultCard = (props) => {
         return <Message>{message.message}</Message>
     }
 
+    
+    const sendMessage = () => {
+
+        let smsObj = {
+            user_number: '+1' + '',
+            message: 'This is a test'
+        }
+       
+        fetch('http://localhost:3000/sms_messages/', {
+            method:'POST',
+            headers: {
+                'content-type': 'application/json',
+                accepts: "application/json"
+            },
+            body: JSON.stringify(smsObj)
+        })
+        .then(resp => resp.json())
+        .then(result => console.log(result))
+    }
+
     return (
         <>
             <h3>Done! Quiz Complete</h3>
             {renderResult()}
-            <button onClick={props.resetQuiz}>Try Again</button>        
+            <button onClick={props.resetQuiz}>Try Again</button> 
+            <button onClick={sendMessage}>Send</button>       
         </>
     )
 }

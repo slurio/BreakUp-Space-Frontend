@@ -44,6 +44,7 @@ const ResultCard = (props) => {
     const [middle, setMiddle] = useState('');
     const [end, setEnd] = useState('');
     const [message, setMessage] = useState(props.result);
+    const [sent, setSent] = useState('');
 
 
     
@@ -55,18 +56,17 @@ const ResultCard = (props) => {
             message: message
         }
        
-        // fetch('http://localhost:3000/sms_messages/', {
-        //     method:'POST',
-        //     headers: {
-        //         'content-type': 'application/json',
-        //         accepts: "application/json"
-        //     },
-        //     body: JSON.stringify(smsObj)
-        // })
-        // .then(resp => resp.json())
-        // .then(result => console.log(result))
+        fetch('http://localhost:3000/sms_messages/', {
+            method:'POST',
+            headers: {
+                'content-type': 'application/json',
+                accepts: "application/json"
+            },
+            body: JSON.stringify(smsObj)
+        })
+        .then(resp => resp.json())
+        .then(result => console.log(result))
 
-        console.log(smsObj);
     }
 
     const changeHandle = (event) => {

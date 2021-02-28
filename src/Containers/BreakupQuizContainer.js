@@ -62,12 +62,12 @@ const QuizContainer = styled.div`
 
 const ScreenContainer = styled.div`
     width: 370px;
-    border: solid 1px grey;
+   
     display: flex;
     flex-direction: column;
     padding: 10px;
     margin-top: 20px;
-    background: white;
+    
 `
 
 const TopicQuestionContainer = styled.div`
@@ -84,7 +84,7 @@ const TopicQuestion = styled.h3`
     margin-bottom: 5px;
     display: inline-block;
     margin-right: 25%;
-    background-color: #EAEAEA;
+    background-color: white;
     position: relative;
     font-weight: 600;
     font-size: 16px;
@@ -96,7 +96,7 @@ const TopicQuestion = styled.h3`
         left: -7px;
         height: 20px;
         width: 20px;
-        background: #EAEAEA;
+        background: white;
         border-bottom-right-radius: 15px;
     }
     &:after {
@@ -107,7 +107,7 @@ const TopicQuestion = styled.h3`
         left: -10px;
         width: 10px;
         height: 20px;
-        background: white;
+        background: #EAEAEA;
         border-bottom-right-radius: 10px;
       }
 `
@@ -158,7 +158,7 @@ margin-bottom: 30px;
     right: -10px;
     width: 10px;
     height: 20px;
-    background: white;
+    background: #EAEAEA;
     border-bottom-left-radius: 10px;
   }
 `

@@ -47,7 +47,7 @@ const MessageContainer = styled.div`
     display: inline-block;
     color: black;
     margin-left: 25%;
-    background: #EAEAEA;
+    background: white;
     position: relative;
     &:after {
         content: "";
@@ -57,7 +57,7 @@ const MessageContainer = styled.div`
         right: -10px;
         width: 10px;
         height: 20px;
-        background: white;
+        background: #EAEAEA;
         border-bottom-left-radius: 10px;
       }
     &:before {
@@ -68,7 +68,7 @@ const MessageContainer = styled.div`
         right: -8px;
         height: 20px;
         width: 20px;
-        background: #EAEAEA;
+        background: white;
         background-attachment: fixed;
         border-bottom-left-radius: 15px;
     }

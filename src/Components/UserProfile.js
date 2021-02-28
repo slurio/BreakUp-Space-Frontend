@@ -265,7 +265,6 @@ const DataContainer = styled.div`
     width: 70%;
     margin: 20px;
     padding: 20px 15px;
-    background-color: white;
     border-radius: 4px;
 `
 

@@ -52,7 +52,7 @@ const ResultCard = (props) => {
         event.preventDefault();
 
         let smsObj = {
-            user_number: '+1' + area + middle + end,
+            user_number: '1' + area + middle + end,
             message: message
         }
        

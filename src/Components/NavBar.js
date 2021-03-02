@@ -1,87 +1,26 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
-import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {loginUser} from '../Redux/actions';
-import logo from '../asset/navbar_logo.png';
+import {Link} from 'react-router-dom'
 import styled from 'styled-components';
 
-function TabPanel(props) {
-  const { children, value, index, ...other } = props;
 
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`full-width-tabpanel-${index}`}
-      aria-labelledby={`full-width-tab-${index}`}
-      {...other}
-    >
-      {value === index && (
-        <Box p={3}>
-          <Typography>{children}</Typography>
-        </Box>
-      )}
-    </div>
-  );
-}
-
-TabPanel.propTypes = {
-  children: PropTypes.node,
-  index: PropTypes.any.isRequired,
-  value: PropTypes.any.isRequired,
-};
-
-function a11yProps(index) {
-    return {
-      id: `full-width-tab-${index}`,
-      'aria-controls': `full-width-tabpanel-${index}`,
-    };
-  }
-
-const useStyles = makeStyles(() => ({
-  root: {
-    width: '100%',
-  },
-}));
 
 function NavBar(props) {
-    const classes = useStyles();
   
 const logoutHandle = () => {
     props.setUser('')
 }
 
   return (
-    <div className={classes.root}>
-
-      <Nav position="static">
-        <Tabs
-            value= {0}
-            style={{height: "72px"}}
-            indicatorColor="primary"
-            textColor="inherit"
-            variant="fullWidth"
-            TabIndicatorProps={{style: {backgroundColor: "transparent"}}}
-        >
-          <Tab component={Link} to='/home' label={<Logo src={logo} alt='logo'/>} {...a11yProps(0)}/>
-          <Tab component={Link} to='/posts' label="Community" {...a11yProps(1)}/>
-          <Tab component={Link} to='/quiz' label="The Quiz" {...a11yProps(2)}/>
-          <Tab component={Link} to='/profile' label="Profile" {...a11yProps(3)}/>
-          {props.user ?
-          <Tab label="Logout" onClick={logoutHandle} {...a11yProps(4)}/>
-          :
-          <Tab component={Link} to='/login' label="Login" {...a11yProps(4)}/>
-          }
-        </Tabs>
-      </Nav>
-    </div>
+    <Container>
+       <Tab to="/home"><Logo src='https://uploads-ssl.webflow.com/5e6437bd68556a7f88367dcc/5ec461df6e203d0a9b69f125_logo_new_1.png' alt='logo'/></Tab>
+      <TabContainer>
+        <Tab to='/posts'>Community</Tab>
+        <Tab to='/quiz'>Quiz</Tab>
+      </TabContainer>
+      
+    </Container>
   )}
 
   const msp = state => {
@@ -99,9 +38,33 @@ const logoutHandle = () => {
 export default connect(msp, mdp)(NavBar);
 
 const Logo = styled.img`
-  width: 30%;
-  height: 30%;
+  width: 200px;
+  height: 30px;
 `
-const Nav = styled(AppBar)`
-  background-color: #333;
+
+const Tab = styled(Link)`
+  display:inline-block;
+  float: left;
+  color: white;
+  margin-left: 50px;
+  text-decoration: none;
+  font-size: 12pt;
+  text-transform: uppercase;
+  padding-top: 30px;
+  padding-bottom: 30px;
 `
+
+const Container = styled.div`
+    background-color: #333;
+    height: 90px;
+    width: 100%;
+`
+
+const TabContainer = styled.div`
+  border-style: solid;
+  border-color: transparent;
+  height: 85px;
+`
+
+
+

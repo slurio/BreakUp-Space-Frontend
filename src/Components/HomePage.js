@@ -11,16 +11,18 @@ const HomePage = () => {
     }
     
     return(
-        <>
+        <div>
             {redirect ? <Redirect to='/quiz'/> : null}
             <Container>
-                <GreetingContainer>
-                    <Header>It's time to breakup with ghosting.</Header>
-                    <Button onClick={clickHandler}>
-                       Get Space
-                    </Button>
-                </GreetingContainer>
-                <Image alt="ghosting text message" src='https://uploads-ssl.webflow.com/5e6437bd68556a7f88367dcc/5ec296209f679a49aefc57af_Image-32.gif'/>
+                <TopContainer>
+                    <GreetingContainer>
+                        <Header>It's time to breakup with ghosting.</Header>
+                        <Button onClick={clickHandler}>
+                        Get Space
+                        </Button>
+                    </GreetingContainer>
+                    <Image alt="ghosting text message" src='https://uploads-ssl.webflow.com/5e6437bd68556a7f88367dcc/5ec296209f679a49aefc57af_Image-32.gif'/>
+                </TopContainer>    
             </Container>
             <AboutContainer>
                 <BackgroundImage alt='Background About Image' src='https://uploads-ssl.webflow.com/5e6437bd68556a7f88367dcc/5f356e3c22dcee2874868e0d_background.jpg'/>
@@ -36,7 +38,7 @@ const HomePage = () => {
                     </SaveHeartText>  
                 </TextContainer>
             </AboutContainer>
-          </>  
+          </div>  
 
     )
 }
@@ -44,19 +46,25 @@ const HomePage = () => {
 export default HomePage;
 
 const Container = styled.div`
+    display: inline-block;
+    width: 100%;
+`
+
+const TopContainer = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: center;
-    height: 80vh;
+    height: 80vh;  
     background-color: #EAEAEA;
-    padding-bottom: 100px;
+    padding-bottom: 75px;
+    padding-top: 75px
 `
 
 const GreetingContainer = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin-right: 25px;
+   
     width: 35vw;
 `
 

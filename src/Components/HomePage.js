@@ -70,8 +70,10 @@ const Image = styled.img`
     height: 80vh;
 `
 const Button = styled.button`
-    min-width: 100px;
-    width: 12vw;
+    display: inline-block;
+    white-space: nowrap;
+    min-width: 150px;
+    width: 150px;
     border-radius: 12px;
     border: #bfa0e2;
     font-weight: 600;

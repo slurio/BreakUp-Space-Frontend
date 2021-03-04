@@ -11,7 +11,7 @@ const HomePage = () => {
     }
     
     return(
-        <div>
+        <>
             {redirect ? <Redirect to='/quiz'/> : null}
             <Container>
                 <TopContainer>
@@ -38,7 +38,7 @@ const HomePage = () => {
                     </SaveHeartText>  
                 </TextContainer>
             </AboutContainer>
-          </div>  
+          </>  
 
     )
 }

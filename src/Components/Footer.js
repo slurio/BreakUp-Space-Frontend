@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 const Footer = () => {
 
     return (
-        <>
+        <FooterContainer>
             <LinkContainer>
                 <Container>
                     <ListItem href="mailto:info@breakupspace.com?subject=Hello!">CONTACT US</ListItem>
@@ -17,7 +17,6 @@ const Footer = () => {
                         <SocialIcon xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 30" x="0px" y="0px"><title>Artboard 98</title><path d="M20,0H4A4,4,0,0,0,0,4V20a4,4,0,0,0,4,4H20a4,4,0,0,0,4-4V4A4,4,0,0,0,20,0Zm2,20a2,2,0,0,1-2,2H4a2,2,0,0,1-2-2V4A2,2,0,0,1,4,2H20a2,2,0,0,1,2,2Z"/><path d="M12,6a6,6,0,1,0,6,6A6,6,0,0,0,12,6Zm0,10a4,4,0,1,1,4-4A4,4,0,0,1,12,16Z"/><circle cx="18.5" cy="5.5" r="1.5"/><text x="0" y="39" fill="#000000" fontSize="5px" fontWeight="bold" fontFamily="'Helvetica Neue', Helvetica, Arial-Unicode, Arial, Sans-serif">Created by Mas Dhimas</text><text x="0" y="44" fill="#000000" fontSize="5px" fontWeight="bold" fontFamily="'Helvetica Neue', Helvetica, Arial-Unicode, Arial, Sans-serif">from the Noun Project</text></SocialIcon>
                     </SocialLink>
                 </Container>
-
             </LinkContainer>
 
             <LogoContainer>
@@ -26,7 +25,7 @@ const Footer = () => {
                 </HomeLink>
                 <CopyRightText>Copyright © 2021 Breakup Space. All rights reserved.</CopyRightText>
             </LogoContainer>
-        </>
+        </FooterContainer>
     )
 }
 
@@ -34,6 +33,10 @@ const Footer = () => {
             
 
 export default Footer;
+
+const FooterContainer = styled.div`
+    width: 100%;
+`
 
 const SocialIcon = styled.svg`
     &:hover {

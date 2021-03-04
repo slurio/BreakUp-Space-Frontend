@@ -7,7 +7,7 @@ import PostDisplay from '../Components/PostDisplay';
 const PostGallery = (props) => {
 
     return (
-        <div>
+        <div style={{height: '100vh'}}>
             <Switch>
                 <Route path={'/posts/:id'} render={ (routerProps) => {
                     let id = parseInt(routerProps.match.params.id);

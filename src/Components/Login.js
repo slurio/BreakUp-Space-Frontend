@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {connect} from 'react-redux';
 import {loginUser} from '../Redux/actions';
 import {Redirect} from 'react-router-dom';
+import styled from 'styled-components';
 
     const Login = (props) => {
         const [username, setUsername] = useState('');
@@ -27,16 +28,18 @@ import {Redirect} from 'react-router-dom';
         }
 
         return (
-            <div>
+            <Container>
                 {props.user ? <Redirect to='/'/>: null}
-                <h1>Log-In</h1>
-                <form onSubmit={handleSubmit} >
-                    <input type='text' name='username' placeholder='Username' onChange={changeHandle} />
+                <LoginForm onSubmit={handleSubmit}>
+                    <h1 style={{marginBottom: "10px", marginTop: "0%", color: "white"}}>Log In</h1>
+                    <span style={{marginBottom: "40px", color: "white"}}>Login here using our username and password</span>
+                    <input style={{width: "150px", height: '25px'}} type='text' name='username' placeholder='Username' onChange={changeHandle} />
                     <br/>
-                    <input type='password' name='password' placeholder='Password' onChange={changeHandle}/>
-                    <button>Submit</button>
-                </form>
-            </div>
+                    <input style={{width: "150px", height: '25px'}} type='password' name='password' placeholder='Password' onChange={changeHandle}/>
+                    <br></br>
+                    <button style={{width: "100px", height: '35px', backgroundColor:'#BFA0E2', color:'white', fontWeight: 'bold'}} >Submit</button>
+                </LoginForm>
+            </Container>
         )
     }
 
@@ -55,3 +58,22 @@ import {Redirect} from 'react-router-dom';
 
 
 export default connect (msp, mdp)(Login);
+
+const Container = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 70vh;
+    width: 100%;
+`
+
+const LoginForm = styled.form`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0px 40px;
+    padding: 50px; 
+    text-align: center;
+    background-color: #333;
+`

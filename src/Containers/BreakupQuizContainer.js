@@ -58,11 +58,11 @@ const QuizContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 100vh;
 `
 
 const ScreenContainer = styled.div`
     width: 370px;
-   
     display: flex;
     flex-direction: column;
     padding: 10px;

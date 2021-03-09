@@ -26,18 +26,25 @@ const PostCard = (props) => {
         <Container>
             <ButtonContainer>
                 <PostButton name="up" onClick={clickHandle}>👍</PostButton>
+                <span style={{fontWeight: 'bold'}}>{props.info.up_votes}</span>
                 <PostButton name="down" onClick={clickHandle}>👎</PostButton>
-                <PostButton name="delete" onClick={clickHandle}>X</PostButton>
             </ButtonContainer>
+            {/* <NavLink to={`/posts/${props.info.id}`}> */}
             <PostContainer>
-                <span>posted: {props.info.date}</span>
-                <NavLink to={`/posts/${props.info.id}`}>
-                    <h1>{props.info.title}</h1>
-                </NavLink>
-                <span>{props.info.content}</span>
-                <span>Username: {props.info.user.username}</span>
-                <span>Up-Votes: {props.info.up_votes}</span>
+                <TopContainer>
+                    <span style={{color: 'black', fontSize: '14px', marginLeft: '5px'}}>posted by {props.info.user.username} {props.info.date}</span>
+                    <PostButton name="delete" onClick={clickHandle}>X</PostButton>
+                </TopContainer>
+                    {/* <h1>{props.info.title}</h1> */}
+                    <Content>{props.info.content}</Content>
+                <Image alt='text' src='https://i.pinimg.com/originals/44/d6/65/44d6651fdfac315e15a000b37a80ef83.jpg'/>
+                {/* <span>{props.info.content}</span> */}
+                <BottomContainer>
+                    <span style={{marginLeft: '5px', color: 'black'}}>{props.info.comments.length} Comments</span>
+                    <span style={{marginLeft: '10px', color: 'black'}}>Report</span>
+                </BottomContainer>
             </PostContainer> 
+            {/* </NavLink> */}
         </Container>    
     )
 }
@@ -54,9 +61,10 @@ export default connect(null, mdp)(PostCard);
 const Container = styled.div`
     display: flex;
     flex-direction: row;
-    border-style: solid; 
+    border: solid red; 
     height: 50%;
     justify-content: center;
+    text-decoration: none;
 `
 
 const PostContainer = styled.div`
@@ -64,19 +72,47 @@ const PostContainer = styled.div`
     display: flex;
     flex-direction: column;
     text-align: left;
-    border-style: solid;
+    border: solid green;
     width: auto;
 `
 const ButtonContainer = styled.div`
     display: flex;
     flex-direction: column;
     text-align: center;
-    border-style: solid;
-    width: 35%;
+    border: solid blue;
+    width: auto;
     top: 0%;
 `
 const PostButton = styled.button`
     postion: static;
     justify-content: center;
-    width: 50%;
+    border: none;
+    &:hover {
+        cursor: pointer;
+    }
+`
+
+const Image = styled.img`
+    height: 70%;
+    width: 70%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+`
+
+const TopContainer = styled.div`
+    display: flex;
+    justify-content: space-between;
+`
+
+const BottomContainer = styled.div`
+    display: flex;
+    font-size: 14px;
+`
+
+const Content = styled.h3`
+    margin-bottom: 10px;
+    margin-left: 5px;
+    color: black;
 `

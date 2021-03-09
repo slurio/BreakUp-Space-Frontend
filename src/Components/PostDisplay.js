@@ -34,6 +34,7 @@ const PostDisplay = props => {
             up_votes: 0
         }
         props.savePost(post)
+        setOpen(false);
     }
 
     const changeHandle = (event) => {
@@ -50,7 +51,7 @@ const PostDisplay = props => {
             {renderPosts()}
             <button onClick={handleOpen}>Write Post</button>
             <Modal
-         s      open={open}
+                open={open}
                 onClose={handleClose}
             >
                 <div>

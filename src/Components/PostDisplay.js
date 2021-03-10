@@ -3,6 +3,7 @@ import PostCard from '../Components/PostCard';
 import {connect} from 'react-redux';
 import Modal from '@material-ui/core/Modal';
 import {savePost} from '../Redux/actions';
+import styled from 'styled-components';
 
 const PostDisplay = props => {
     const [open, setOpen] = useState(false);
@@ -46,10 +47,10 @@ const PostDisplay = props => {
     }
 
     return (
-        <div>
+        <Container>
             <h1>Post Display</h1>
+            <Button onClick={handleOpen}>Write Post</Button>
             {renderPosts()}
-            <button onClick={handleOpen}>Write Post</button>
             <Modal
                 open={open}
                 onClose={handleClose}
@@ -62,7 +63,7 @@ const PostDisplay = props => {
                     </form>
                 </div>
             </Modal>
-        </div>
+        </Container>
     )
 }
 
@@ -80,3 +81,15 @@ const mdp = dispatch => {
 }
 
 export default connect (msp, mdp)(PostDisplay);
+
+const Container = styled.div`
+    font-family: helvetica;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+`
+
+const Button = styled.button`
+    width: 150px;
+    margin-bottom: 5%;
+`

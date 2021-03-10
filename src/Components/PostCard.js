@@ -25,9 +25,9 @@ const PostCard = (props) => {
     return (
         <Container>
             <ButtonContainer>
-                <PostButton name="up" onClick={clickHandle}>👍</PostButton>
-                <span style={{fontWeight: 'bold'}}>{props.info.up_votes}</span>
-                <PostButton name="down" onClick={clickHandle}>👎</PostButton>
+                <PostButton style={{fontSize: "20pt", marginBottom: "25%"}} name="up" onClick={clickHandle}>👍</PostButton>
+                <span style={{fontWeight: 'bold', fontSize: "25pt"}}>{props.info.up_votes}</span>
+                <PostButton style={{fontSize: "20pt", marginTop: "25%"}} name="down" onClick={clickHandle}>👎</PostButton>
             </ButtonContainer>
             {/* <NavLink to={`/posts/${props.info.id}`}> */}
             <PostContainer>
@@ -63,8 +63,9 @@ const Container = styled.div`
     flex-direction: row;
     border: solid red; 
     height: 50%;
-    justify-content: center;
+    justify-content: space-evenly;
     text-decoration: none;
+    margin-bottom: 50px;
 `
 
 const PostContainer = styled.div`
@@ -78,9 +79,10 @@ const PostContainer = styled.div`
 const ButtonContainer = styled.div`
     display: flex;
     flex-direction: column;
-    text-align: center;
+    justify-content: center;
+    align-items: center;
     border: solid blue;
-    width: auto;
+    width: 10%;
     top: 0%;
 `
 const PostButton = styled.button`

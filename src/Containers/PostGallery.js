@@ -3,11 +3,12 @@ import {connect} from 'react-redux';
 import {Route, Switch} from 'react-router-dom';
 import PostPage from '../Components/PostPage';
 import PostDisplay from '../Components/PostDisplay';
+import styled from 'styled-components';
 
 const PostGallery = (props) => {
 
     return (
-        <div style={{height: '100vh'}}>
+        <Container>
             <Switch>
                 <Route path={'/posts/:id'} render={ (routerProps) => {
                     let id = parseInt(routerProps.match.params.id);
@@ -20,7 +21,7 @@ const PostGallery = (props) => {
                 } />
                 <Route path={'/posts'} render={() => <PostDisplay />}/>
             </Switch>
-        </div>
+        </Container>
     )
 }
 
@@ -31,3 +32,13 @@ const msp = state => {
 }
 
 export default connect(msp)(PostGallery);
+
+const Container = styled.div`
+    font-family: helvetica;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    border: solid black;
+    overflow: auto;
+    height: 1%;
+`

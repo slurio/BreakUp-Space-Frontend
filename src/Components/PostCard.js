@@ -63,9 +63,12 @@ const Container = styled.div`
     flex-direction: row;
     border: solid red; 
     height: 50%;
+    width: 100%;
     justify-content: space-evenly;
     text-decoration: none;
     margin-bottom: 50px;
+    padding-top: 2%;
+    padding-bottom: 2%;
 `
 
 const PostContainer = styled.div`
@@ -79,7 +82,7 @@ const PostContainer = styled.div`
 const ButtonContainer = styled.div`
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
     border: solid blue;
     width: 10%;

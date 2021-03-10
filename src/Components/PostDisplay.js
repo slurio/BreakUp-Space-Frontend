@@ -48,9 +48,13 @@ const PostDisplay = props => {
 
     return (
         <Container>
-            <h1>Post Display</h1>
-            <Button onClick={handleOpen}>Write Post</Button>
-            {renderPosts()}
+            <Header>
+                <h1>Post Display</h1>
+                <Button onClick={handleOpen}>Write Post</Button>
+            </Header>
+            <PostContainer>
+                {renderPosts()}
+            </PostContainer>
             <Modal
                 open={open}
                 onClose={handleClose}
@@ -83,13 +87,29 @@ const mdp = dispatch => {
 export default connect (msp, mdp)(PostDisplay);
 
 const Container = styled.div`
-    font-family: helvetica;
     display: flex;
     flex-direction: column;
     height: 100vh;
+    align-items: center;
+`
+const PostContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    overflow: auto;
+    border: solid purple;
 `
 
 const Button = styled.button`
     width: 150px;
-    margin-bottom: 5%;
+`
+
+const Header = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    padding-bottom: 2%;
+    border: solid orange;
 `

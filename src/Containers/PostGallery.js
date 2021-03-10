@@ -39,6 +39,4 @@ const Container = styled.div`
     flex-direction: column;
     height: auto;
     border: solid black;
-    overflow: auto;
-    height: 1%;
 `

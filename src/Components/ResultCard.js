@@ -169,7 +169,7 @@ margin-left: 25%;
 background: #bfa0e2;
 background-attachment: fixed;
 position: relative;
-margin-bottom: 30px;
+margin-bottom: 20px;
 &:before{
     content: "";
     position: absolute;

@@ -7,7 +7,6 @@ const Quiz = (props) => {
     const [count, setCount] = useState(0);
     const [messageSubject, setMessageSubject] = useState('');
     const [messageTone, setMessageTone] = useState({'casual': 0, 'friendly': 0, 'direct': 0});
-  
 
     const resetQuiz = () => {
         props.resetQuiz();
@@ -65,8 +64,7 @@ const Quiz = (props) => {
             foundMessage = props.messages.find(message => message.topic.theme === props.topic && message.tone === selectedTone && message.subject === messageSubject)
         }
 
-        text = foundMessage.message;
-
+        text = foundMessage;
     }
 
     const renderQuestions = () => {

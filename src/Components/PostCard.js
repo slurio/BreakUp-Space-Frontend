@@ -3,6 +3,8 @@ import {NavLink} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {updateVote, deletePost} from '../Redux/actions';
 import styled from 'styled-components';
+import ChatSvg from '../asset/chat.svg';
+import FlagSvg from '../asset/flag.svg';
 
 const PostCard = (props) => {
 
@@ -40,8 +42,10 @@ const PostCard = (props) => {
                 <Image alt='text' src='https://i.pinimg.com/originals/44/d6/65/44d6651fdfac315e15a000b37a80ef83.jpg'/>
                 {/* <span>{props.info.content}</span> */}
                 <BottomContainer>
-                    <span style={{marginLeft: '5px', color: 'black'}}>{props.info.comments.length} Comments</span>
-                    <span style={{marginLeft: '10px', color: 'black'}}>Report</span>
+                    <ChatIcon src={ChatSvg} alt='chat icon'/>
+                    <Span>{props.info.comments.length} Comments</Span>
+                    <FlagIcon src={FlagSvg} alt='flag icon'/>
+                    <Span>Report</Span>
                 </BottomContainer>
             </PostContainer> 
             {/* </NavLink> */}
@@ -120,4 +124,19 @@ const Content = styled.h3`
     margin-bottom: 10px;
     margin-left: 5px;
     color: black;
+`
+
+const Span = styled.span`
+    display: flex;
+    width: 110px;
+    align-items: center;
+    margin-left: 7px;
+    font-weight: bold;
+`
+
+const ChatIcon = styled.img`   
+`
+
+const FlagIcon = styled.img`
+    margin-left: 5px;
 `

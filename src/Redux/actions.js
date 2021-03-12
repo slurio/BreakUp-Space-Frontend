@@ -35,10 +35,9 @@ export const savePost = (postObj) => {
         fetch(POSTS_URL, {
             method:'POST',
             headers: {
-                'content-type': 'application/json',
                 accepts: "application/json"
             },
-            body: JSON.stringify(postObj)
+            body: postObj
         })
         .then(resp => resp.json())
         .then(newPost => dispatch({type: "NEW_POST", payload: newPost}))

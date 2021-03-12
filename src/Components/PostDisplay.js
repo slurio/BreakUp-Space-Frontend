@@ -1,18 +1,19 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import PostCard from '../Components/PostCard';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import Modal from '@material-ui/core/Modal';
-import {savePost} from '../Redux/actions';
+import { savePost } from '../Redux/actions';
 import styled from 'styled-components';
 
 const PostDisplay = props => {
     const [open, setOpen] = useState(false);
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
+    const [image, setImage] = useState("");
 
     const renderPosts = () => {
-        let sortedPosts = props.posts.sort((a,b) => b.up_votes - a.up_votes)
-         return sortedPosts.map(post => <PostCard key={post.id} info={post} />)
+        let sortedPosts = props.posts.sort((a, b) => b.up_votes - a.up_votes)
+        return sortedPosts.map(post => <PostCard key={post.id} info={post} />)
     }
 
     const handleOpen = () => {
@@ -26,15 +27,14 @@ const PostDisplay = props => {
     const handleSubmit = (e) => {
         e.preventDefault()
         var today = new Date()
-        let post = {
-            title: title,
-            content: content,
-            user_id: props.user.id,
-            date: today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate(),
-            time: today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate() + 'T' + today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds() + ".000Z",
-            up_votes: 0
-        }
-        props.savePost(post)
+        let formData = new FormData();
+        formData.append('title', title);
+        formData.append('content', content);
+        formData.append('user_id', props.user.id);
+        formData.append('date', (today.getMonth() + 1) + '/' + today.getDate() + '/' + today.getFullYear());
+        formData.append('image', image);
+
+        props.savePost(formData);
         setOpen(false);
     }
 
@@ -43,6 +43,8 @@ const PostDisplay = props => {
             setTitle(event.target.value)
         } else if (event.target.name === 'content') {
             setContent(event.target.value)
+        } else if (event.target.name === 'image') {
+            setImage(event.target.files[0])
         }
     }
 
@@ -50,7 +52,7 @@ const PostDisplay = props => {
         <Container>
             <Header>
                 <h1>Post Display</h1>
-                <Button onClick={handleOpen}>Write Post</Button>
+                {props.user ? <Button onClick={handleOpen}>Write Post</Button> : <h4>Must be logged in to Post or Comment. <br></br><a href="/login">Log-in</a>?</h4>}
             </Header>
             <PostContainer>
                 {renderPosts()}
@@ -61,8 +63,9 @@ const PostDisplay = props => {
             >
                 <div>
                     <form onSubmit={handleSubmit}>
-                        <input type='text' name='title' placeholder='title goes here!' onChange={changeHandle}/>
-                        <input type='textarea' name='content' placeholder='text goes here!' onChange={changeHandle}/>
+                        <input type='text' name='title' placeholder='title goes here!' onChange={changeHandle} />
+                        <input type='textarea' name='content' placeholder='text goes here!' onChange={changeHandle} />
+                        <input type='file' name='image' onChange={changeHandle}/>
                         <button>Submit</button>
                     </form>
                 </div>
@@ -84,7 +87,7 @@ const mdp = dispatch => {
     }
 }
 
-export default connect (msp, mdp)(PostDisplay);
+export default connect(msp, mdp)(PostDisplay);
 
 const Container = styled.div`
     display: flex;

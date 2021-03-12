@@ -1,7 +1,6 @@
 import React from 'react';
-import {NavLink} from 'react-router-dom';
-import {connect} from 'react-redux';
-import {updateVote, deletePost} from '../Redux/actions';
+import { connect } from 'react-redux';
+import { updateVote, deletePost } from '../Redux/actions';
 import styled from 'styled-components';
 import ChatSvg from '../asset/chat.svg';
 import FlagSvg from '../asset/flag.svg';
@@ -26,30 +25,27 @@ const PostCard = (props) => {
 
     return (
         <Container>
+            {console.log(props.info)}
             <ButtonContainer>
-                <PostButton style={{fontSize: "20pt", marginBottom: "25%"}} name="up" onClick={clickHandle}>👍</PostButton>
-                <span style={{fontWeight: 'bold', fontSize: "25pt"}}>{props.info.up_votes}</span>
-                <PostButton style={{fontSize: "20pt", marginTop: "25%"}} name="down" onClick={clickHandle}>👎</PostButton>
+                <PostButton style={{ fontSize: "20pt", marginBottom: "25%" }} name="up" onClick={clickHandle}>👍</PostButton>
+                <span style={{ fontWeight: 'bold', fontSize: "25pt" }}>{props.info.up_votes}</span>
+                <PostButton style={{ fontSize: "20pt", marginTop: "25%" }} name="down" onClick={clickHandle}>👎</PostButton>
             </ButtonContainer>
-            {/* <NavLink to={`/posts/${props.info.id}`}> */}
             <PostContainer>
                 <TopContainer>
-                    <span style={{color: 'black', fontSize: '14px', marginLeft: '5px'}}>posted by {props.info.user.username} {props.info.date}</span>
+                    <span style={{ color: 'black', fontSize: '14px', marginLeft: '5px' }}>posted by {props.info.user.username} on {props.info.date}</span>
                     <PostButton name="delete" onClick={clickHandle}>X</PostButton>
                 </TopContainer>
-                    {/* <h1>{props.info.title}</h1> */}
-                    <Content>{props.info.content}</Content>
-                <Image alt='text' src='https://i.pinimg.com/originals/44/d6/65/44d6651fdfac315e15a000b37a80ef83.jpg'/>
-                {/* <span>{props.info.content}</span> */}
+                <Content>{props.info.content}</Content>
+                <Image alt='text' src={props.info.image} />
                 <BottomContainer>
-                    <ChatIcon src={ChatSvg} alt='chat icon'/>
+                    <ChatIcon src={ChatSvg} alt='chat icon' />
                     <Span>{props.info.comments.length} Comments</Span>
-                    <FlagIcon src={FlagSvg} alt='flag icon'/>
+                    <FlagIcon src={FlagSvg} alt='flag icon' />
                     <Span>Report</Span>
                 </BottomContainer>
-            </PostContainer> 
-            {/* </NavLink> */}
-        </Container>    
+            </PostContainer>
+        </Container>
     )
 }
 

@@ -17,7 +17,7 @@ Coming soon ... Site is currently being developed!
 - Material UI
 - Styled-Components
 
-#### [Backend](https://github.com/kevinpark07/Breakup-Space-Backend)
+#### [Backend](https://github.com/slurio/Breakup-Space-Backend)
 
 - Ruby on Rails
 - PostgreSQL

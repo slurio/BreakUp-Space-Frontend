@@ -62,6 +62,7 @@ const Tab = styled(Link)`
   text-decoration: none;
   font-size: 14pt;
   text-transform: uppercase;
+  letter-spacing: 3px;
 `
 
 const Container = styled.div`
@@ -72,9 +73,3 @@ const Container = styled.div`
   width: 100%;
   align-items: center;
 `
-
-
-// display: flex;
-//   align-items: center;
-//   justify-content: space-between;
-

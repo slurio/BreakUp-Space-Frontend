@@ -30,15 +30,14 @@ function postsReducer(state = defaultState.posts, action) {
         case 'GET_POSTS':
             return action.payload
             break;
-        case 'NEW_POSTS':
+        case 'NEW_POST':
             return [...state, action.payload]
             break;
         case 'UPDATED_POST':
             let updatedArray = state.filter(post => post.id !== action.payload.id);
             return [...updatedArray, action.payload] 
             break;
-        case 'DELETE':
-            debugger
+        case 'DELETE_POST':
             let newArray = state.filter(post => post.id !== action.payload.id);
             return [...newArray]
             break;
@@ -105,7 +104,7 @@ function commentsReducer(state = defaultState.comments, action) {
             break;
         case 'DELETE_COMMENT':
             let newCommentsArray = state.filter(comment => comment.id !== action.payload.id);
-            return [...newCommentsArray]
+            return newCommentsArray
             break;
         default:
             return state

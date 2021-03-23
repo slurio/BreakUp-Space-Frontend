@@ -17,28 +17,28 @@ const Quiz = (props) => {
     const nextQuestion = (answer) => {
         if(count === 0 && props.topic !== 'friendzone') {
             setMessageSubject(answer.innerText.toLowerCase());
-            setCount(count+1)
-            renderQuestions()
+            setCount(count+1);
+            renderQuestions();
         } else if (messageSubject === 'made me feel uncomfortable' && count === 1) {
-            setMessageTone(answer.innerText.toLowerCase())
-            setCount(props.questions.length)
-            renderQuestions()  
+            setMessageTone(answer.innerText.toLowerCase());
+            setCount(props.questions.length);
+            renderQuestions();
         } else {
             switch(parseInt(answer.id)) {
                 case 1:
-                    setMessageTone({...messageTone, casual: messageTone['casual']+1})
+                    setMessageTone({...messageTone, casual: messageTone['casual']+1});
                     break;
                 case 2:
-                    setMessageTone({...messageTone, friendly: messageTone['friendly']+1})
+                    setMessageTone({...messageTone, friendly: messageTone['friendly']+1});
                     break;
                 case 3:
-                    setMessageTone({...messageTone, direct: messageTone['direct']+1})
+                    setMessageTone({...messageTone, direct: messageTone['direct']+1});
                     break;
                 default:
                     break;
             }
-            setCount(count+1)
-            renderQuestions()
+            setCount(count+1);
+            renderQuestions();
         }
     }
 
@@ -59,9 +59,9 @@ const Quiz = (props) => {
         if (props.topic === 'no connection' && props.messageSubject === 'made me feel uncomfortable') {
             foundMessage = props.messages.find(message =>  message.tone === messageTone && message.subject === messageSubject);
         } else if(!messageSubject) {
-            foundMessage = props.messages.find(message => message.topic.theme === props.topic && message.tone === selectedTone)
+            foundMessage = props.messages.find(message => message.topic.theme === props.topic && message.tone === selectedTone);
         } else {
-            foundMessage = props.messages.find(message => message.topic.theme === props.topic && message.tone === selectedTone && message.subject === messageSubject)
+            foundMessage = props.messages.find(message => message.topic.theme === props.topic && message.tone === selectedTone && message.subject === messageSubject);
         }
 
         text = foundMessage;
@@ -74,11 +74,11 @@ const Quiz = (props) => {
             return  <QuestionCard handleClick={nextQuestion} key={selectedQuestion.id} question={selectedQuestion.question} answers={selectedQuestion.answers}/>
         } else if(count < props.questions.length) {
             if (props.questions) {
-                let selectedQuestion = props.questions[count]
+                let selectedQuestion = props.questions[count];
                 return  <QuestionCard handleClick={nextQuestion} key={selectedQuestion.id} question={selectedQuestion.question} answers={selectedQuestion.answers}/>
             }
         } else {
-            renderResult()
+            renderResult();
             return (
                 <ResultCard resetQuiz={resetQuiz} result={text} />
             )

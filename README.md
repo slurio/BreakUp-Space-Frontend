@@ -15,7 +15,6 @@ Coming soon ... Site is currently being developed!
 - React
 - Redux
 - Material UI
-- Cloudinary
 - Styled-Components
 
 #### [Backend](https://github.com/slurio/Breakup-Space-Backend)
@@ -23,3 +22,5 @@ Coming soon ... Site is currently being developed!
 - Ruby on Rails
 - PostgreSQL
 - Active Model Serializers
+- Cloudinary
+
